@@ -4,7 +4,6 @@
 //
 //  Created by 쭌이 on 8/21/24.
 //
-import Alamofire
 import UIKit
 
 class ViewController: UIViewController {
