@@ -9,6 +9,6 @@ import Foundation
 
 struct UserLocation {
   let cityName: String
-  let latitude: Int // 위도
-  let longitude: Int // 경도
+  let latitude: Double // 위도
+  let longitude: Double // 경도
 }

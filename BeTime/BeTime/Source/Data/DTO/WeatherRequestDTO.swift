@@ -8,10 +8,10 @@
 import Foundation
 
 struct WeatherRequestDTO {
-  static let baseURL = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"
+   let baseURL: String = APIConfig.baseURL
 
     // 기본값 있는 프로퍼티
-    var serviceKey: String = "82AhPCcoQ68FQepqQPEtdIUdXktjvffPdhesYZmqGhGhaVt6YuRy0PhhdF9IaayPbCQwOWgHpcJwSET29msx5A%3D%3D"
+    var serviceKey: String = APIConfig.serviceKey
     var pageNo: String = "10"
     var numOfRows: String = "1"
 
@@ -23,7 +23,7 @@ struct WeatherRequestDTO {
     var ny: String
 
     // AlamoFire parameter 생성 Dictionary로 변환
-    func toDictionary() -> [String: String] {
+    func parameters() -> [String: String] {
       return [
         "serviceKey": serviceKey,
         "pageNo": pageNo,
