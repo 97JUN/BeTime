@@ -7,37 +7,26 @@
 
 import Foundation
 
-struct WeatherResponseDTO: Decodable {
-  let response: Response
-}
-
-struct Response: Decodable {
-  let header: Header
-  let body: Body
-}
-
-struct Header: Decodable {
-  let resultCode: String
-  let resultMsg: String
-}
-
-struct Body: Decodable {
-  let dataType: String
-  let items:[WeatherItem]
-  let pageNo: Int
-  let numOfRows: Int
-  let totalCount: Int
+struct WeatherResponseDTO<ItemType: Decodable>: Decodable {
+    let response: Response<ItemType>
 }
 
 struct WeatherItem: Decodable {
-  let baseDate: String
-  let baseTime: String
-  let category: String
-  let fcstDate: String
-  let fcstTime: String
-  let fcstValue: String
-  let nx: Int
-  let ny: Int
+  let baseDate: String // 발표일자
+  let baseTime: String // 발표시각
+  let category: Category // 자료구분 문자
+  let fcstDate: String // 예측날짜
+  let fcstTime: String // 예측시간
+  let fcstValue: String // 예보값
+  let nx: Int // 예보지점 X좌표
+  let ny: Int // 예보지점 Y좌표
+}
+
+enum Category: String, Decodable {
+  case temperature = "T1H"
+  case precipitation = "RN1"
+  case skyCondition = "SKY"
+  case unknown
 }
 
 extension WeatherItem {
