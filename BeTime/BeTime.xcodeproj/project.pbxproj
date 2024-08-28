@@ -20,7 +20,7 @@
 		29EEFADA2C78A56600BEBE78 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD92C78A56600BEBE78 /* Location.swift */; };
 		29EEFADC2C78AB9500BEBE78 /* WeatherRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFADB2C78AB9500BEBE78 /* WeatherRequestDTO.swift */; };
 		29EEFADE2C79EEF000BEBE78 /* DateCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFADD2C79EEF000BEBE78 /* DateCore.swift */; };
-		29EEFAE02C7C452000BEBE78 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFADF2C7C452000BEBE78 /* AppConfig.swift */; };
+		29EEFAE02C7C452000BEBE78 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFADF2C7C452000BEBE78 /* APIConfig.swift */; };
 		29EEFAE22C7CBAA800BEBE78 /* APIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE12C7CBAA800BEBE78 /* APIResponseModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +39,7 @@
 		29EEFAD92C78A56600BEBE78 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		29EEFADB2C78AB9500BEBE78 /* WeatherRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequestDTO.swift; sourceTree = "<group>"; };
 		29EEFADD2C79EEF000BEBE78 /* DateCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCore.swift; sourceTree = "<group>"; };
-		29EEFADF2C7C452000BEBE78 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		29EEFADF2C7C452000BEBE78 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		29EEFAE12C7CBAA800BEBE78 /* APIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseModel.swift; sourceTree = "<group>"; };
 		B4F4BBE66577AD0D03D2C062 /* Pods-BeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeTime.debug.xcconfig"; path = "Target Support Files/Pods-BeTime/Pods-BeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		D0212BA7EF957E9FB671F80F /* Pods-BeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeTime.release.xcconfig"; path = "Target Support Files/Pods-BeTime/Pods-BeTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		29EEFACD2C788FEB00BEBE78 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				29EEFADF2C7C452000BEBE78 /* AppConfig.swift */,
+				29EEFADF2C7C452000BEBE78 /* APIConfig.swift */,
 				29EEFAE12C7CBAA800BEBE78 /* APIResponseModel.swift */,
 				29EEFACF2C78925A00BEBE78 /* DTO */,
 			);
@@ -319,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29894DEF2C75D150002A08DF /* ViewController.swift in Sources */,
-				29EEFAE02C7C452000BEBE78 /* AppConfig.swift in Sources */,
+				29EEFAE02C7C452000BEBE78 /* APIConfig.swift in Sources */,
 				29EEFADE2C79EEF000BEBE78 /* DateCore.swift in Sources */,
 				29EEFAD32C78A29400BEBE78 /* LocationCore.swift in Sources */,
 				29EEFADC2C78AB9500BEBE78 /* WeatherRequestDTO.swift in Sources */,
