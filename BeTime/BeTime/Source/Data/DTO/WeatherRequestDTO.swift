@@ -8,31 +8,31 @@
 import Foundation
 
 struct WeatherRequestDTO {
-   let baseURL: String = APIConfig.baseURL
+  let baseURL: String = APIConfig.baseURL
 
-    // 기본값 있는 프로퍼티
-    var serviceKey: String = APIConfig.serviceKey
-    var pageNo: String = "10"
-    var numOfRows: String = "1"
+  // 기본값 있는 프로퍼티
+  var serviceKey: String = APIConfig.serviceKey
+  var pageNo: String = "10"
+  var numOfRows: String = "1"
 
-    // 기본값이 없는 프로퍼티
-    var dataType: String
-    var baseDate: String
-    var baseTime: String
-    var nx: String
-    var ny: String
+  // 기본값이 없는 프로퍼티
+  var dataType: String
+  var baseDate: String
+  var baseTime: String
+  var nx: String
+  var ny: String
 
-    // AlamoFire parameter 생성 Dictionary로 변환
-    func parameters() -> [String: String] {
-      return [
-        "serviceKey": serviceKey,
-        "pageNo": pageNo,
-        "numOfRows": numOfRows,
-        "dataType": dataType,
-        "base_date": baseDate,
-        "base_time": baseTime,
-        "nx": nx,
-        "ny": ny,
-      ]
-    }
+  // 전달하는 데이터가 String타입이기 때문에 [String: String]으로 반환
+  func parameters() -> [String: String] {
+    return [
+      "serviceKey": serviceKey,
+      "pageNo": pageNo,
+      "numOfRows": numOfRows,
+      "dataType": dataType,
+      "base_date": baseDate,
+      "base_time": baseTime,
+      "nx": nx,
+      "ny": ny,
+    ]
   }
+}
