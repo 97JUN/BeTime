@@ -30,7 +30,7 @@ enum Category: String, Decodable {
 }
 
 extension WeatherItem {
-  func toDomain() -> Weather {
+  func toDomain() -> WeatherForecast {
     return .init(time: fcstTime, value: fcstValue)
   }
 }
