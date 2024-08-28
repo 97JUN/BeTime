@@ -14,7 +14,7 @@ struct WeatherResponseDTO<ItemType: Decodable>: Decodable {
 struct WeatherItem: Decodable {
   let baseDate: String // 발표일자
   let baseTime: String // 발표시각
-  let category: Category // 자료구분 문자
+  let category: String // 자료구분 문자
   let fcstDate: String // 예측날짜
   let fcstTime: String // 예측시간
   let fcstValue: String // 예보값
@@ -22,15 +22,8 @@ struct WeatherItem: Decodable {
   let ny: Int // 예보지점 Y좌표
 }
 
-enum Category: String, Decodable {
-  case temperature = "T1H"
-  case precipitation = "RN1"
-  case skyCondition = "SKY"
-  case unknown
-}
-
 extension WeatherItem {
   func toDomain() -> WeatherForecast {
-    return .init(time: fcstTime, value: fcstValue)
+    return .init(category: Category(rawValue: category) ?? .unknown, time: fcstTime, value: fcstValue)
   }
 }
