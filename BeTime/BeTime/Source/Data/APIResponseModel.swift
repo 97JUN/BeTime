@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Response<ItemType: Decodable>: Decodable {
   let header: Header
   let body: Body<ItemType>
@@ -18,9 +17,9 @@ struct Header: Decodable {
   let resultMsg: String
 }
 
-struct Body<ItemType : Decodable>: Decodable {
+struct Body<ItemType: Decodable>: Decodable {
   let dataType: String
-  let items:[ItemType]
+  let items: [ItemType]
   let pageNo: Int
   let numOfRows: Int
   let totalCount: Int
