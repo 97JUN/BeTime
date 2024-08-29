@@ -14,9 +14,9 @@ struct WeatherRequestDTO {
   var serviceKey: String = APIConfig.serviceKey
   var pageNo: String = "10"
   var numOfRows: String = "1"
+  var dataType: String = "JSON"
 
   // 기본값이 없는 프로퍼티
-  var dataType: String
   var baseDate: String
   var baseTime: String
   var nx: String
