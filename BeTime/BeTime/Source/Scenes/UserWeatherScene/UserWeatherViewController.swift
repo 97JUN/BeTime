@@ -8,6 +8,10 @@
 import UIKit
 
 final class UserWeatherViewController: UIViewController {
+   var viewModel: UserWeatherViewModel!
+
   override func viewDidLoad() {
+    super.viewDidLoad()
+    viewModel.viewDidLoad()
   }
 }
