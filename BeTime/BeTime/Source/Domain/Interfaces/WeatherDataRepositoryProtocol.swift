@@ -8,5 +8,5 @@
 import Foundation
 
 protocol WeatherDataRepositoryProtocol {
-  func requestWeatherData(with: WeatherRequestDTO)
+  func requestWeatherData(with requestDTO: WeatherRequestDTO, completion: @escaping (Result<[WeatherItem], Error>) -> Void)
 }

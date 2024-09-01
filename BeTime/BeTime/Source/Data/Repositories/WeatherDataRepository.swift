@@ -8,8 +8,7 @@
 import Foundation
 
 final class WeatherDataRepository: WeatherDataRepositoryProtocol {
-
-  func requestWeatherData(with: WeatherRequestDTO) {
-    // AlamoFire를 통해 RequestDTO를 가지고 GET 요청
+  func requestWeatherData(with requestDTO: WeatherRequestDTO, completion: @escaping (Result<[WeatherItem], Error>) -> Void) {
+    //     AlamoFire Manager를 통해 RequestDTO를 가지고 GET 요청
   }
 }
