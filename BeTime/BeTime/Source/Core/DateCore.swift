@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentDate {
-  let date: String? // yyyyMMdd 형태
-  let time: String? // hhmm 형태
+struct DateTime {
+  let date: String // yyyyMMdd 형태
+  let time: String // hhmm 형태
 }
