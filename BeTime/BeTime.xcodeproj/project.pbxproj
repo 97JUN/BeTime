@@ -27,6 +27,7 @@
 		29EEFAE92C7DC99000BEBE78 /* UserWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE82C7DC99000BEBE78 /* UserWeatherViewModel.swift */; };
 		29EEFAEB2C7DCFA900BEBE78 /* UserWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAEA2C7DCFA900BEBE78 /* UserWeatherViewController.swift */; };
 		29EEFB1D2C80700300BEBE78 /* WeatherDataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFB1C2C80700300BEBE78 /* WeatherDataRepositoryProtocol.swift */; };
+		29EEFB1F2C8580F200BEBE78 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFB1E2C8580F200BEBE78 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		29EEFAE82C7DC99000BEBE78 /* UserWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWeatherViewModel.swift; sourceTree = "<group>"; };
 		29EEFAEA2C7DCFA900BEBE78 /* UserWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWeatherViewController.swift; sourceTree = "<group>"; };
 		29EEFB1C2C80700300BEBE78 /* WeatherDataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataRepositoryProtocol.swift; sourceTree = "<group>"; };
+		29EEFB1E2C8580F200BEBE78 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B4F4BBE66577AD0D03D2C062 /* Pods-BeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeTime.debug.xcconfig"; path = "Target Support Files/Pods-BeTime/Pods-BeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		D0212BA7EF957E9FB671F80F /* Pods-BeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeTime.release.xcconfig"; path = "Target Support Files/Pods-BeTime/Pods-BeTime.release.xcconfig"; sourceTree = "<group>"; };
 		EC9EC6676C51C13C802702E8 /* Pods_BeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				29EEFADF2C7C452000BEBE78 /* APIConfig.swift */,
+				29EEFB1E2C8580F200BEBE78 /* APIManager.swift */,
 				29EEFAE12C7CBAA800BEBE78 /* APIResponseModel.swift */,
 				29EEFACF2C78925A00BEBE78 /* DTO */,
 				29EEFAE52C7DB42700BEBE78 /* Repositories */,
@@ -361,6 +364,7 @@
 				29EEFAE92C7DC99000BEBE78 /* UserWeatherViewModel.swift in Sources */,
 				29894DEB2C75D150002A08DF /* AppDelegate.swift in Sources */,
 				29EEFAE22C7CBAA800BEBE78 /* APIResponseModel.swift in Sources */,
+				29EEFB1F2C8580F200BEBE78 /* APIManager.swift in Sources */,
 				29EEFAD82C78A3E200BEBE78 /* WeatherForecast.swift in Sources */,
 				29894DED2C75D150002A08DF /* SceneDelegate.swift in Sources */,
 				29EEFADA2C78A56600BEBE78 /* Location.swift in Sources */,
