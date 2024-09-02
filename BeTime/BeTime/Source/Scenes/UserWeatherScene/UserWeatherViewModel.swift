@@ -29,8 +29,7 @@ final class UserWeatherViewModel {
   }
 
   func getUserDate() -> DateTime {
-    // DateCore에서 얻은 날짜, 시간
-    let time = DateTime(date: "20240808", time: "1400") // 임시데이터
+    let time = DateTime.getDateTime()
     return time
   }
 
