@@ -9,7 +9,10 @@ import Foundation
 
 final class UserWeatherViewModel {
   private let fetchWeatherUseCase: FetchWeatherUseCaseProtocol
-  private var forcastDatas: [WeatherForecast]?
+
+  private var skyConditionDatas: [WeatherForecast]?
+  private var temperatureDatas: [WeatherForecast]?
+  private var percipitationDatas: [WeatherForecast]?
 
   init(searchWeatherUseCase: FetchWeatherUseCaseProtocol) {
     self.fetchWeatherUseCase = searchWeatherUseCase
@@ -35,11 +38,16 @@ final class UserWeatherViewModel {
     self.fetchWeatherUseCase.execute(locationInfo: getUserLcoation(), dateInfo: getUserDate()) { [weak self] result in
       switch result {
       case .success(let forcastData):
-        self?.forcastDatas?.append(contentsOf: forcastData)
+        self?.updateWeatherdata(with: forcastData)
       case .failure(let failure):
-        print("load fail")
-        // fail 시 처리
+        print("load fail: \(failure)")
       }
     }
+  }
+
+  private func updateWeatherdata(with data: [WeatherForecast]) {
+    skyConditionDatas = data.filter { $0.category == .skyCondition }
+    temperatureDatas = data.filter { $0.category == .temperature }
+    percipitationDatas = data.filter { $0.category == .precipitation }
   }
 }

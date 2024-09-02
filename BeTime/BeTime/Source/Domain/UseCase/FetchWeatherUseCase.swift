@@ -23,7 +23,7 @@ final class FetchWeatherUseCase: FetchWeatherUseCaseProtocol {
     weatherRepository.requestWeatherData(with: requestDTO) { result in
       switch result {
       case .success(let response):
-        let forecasts: [WeatherForecast] = response.map { $0.toDomain() }
+        let forecasts: [WeatherForecast] = response.map { $0.toDomain() }.filter{ $0.category != .unknown }
         completion(.success(forecasts))
       case .failure(let error):
         completion(.failure(error))
