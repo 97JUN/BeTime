@@ -14,7 +14,12 @@ struct Response<ItemType: Decodable>: Decodable {
 
 struct Header: Decodable {
   let resultCode: String
-  let resultMsg: String
+  let resultMessage: String
+
+  enum CodingKeys: String, CodingKey {
+    case resultCode = "resultCode"
+    case resultMessage = "resultMsg"
+  }
 }
 
 struct Body<ItemType: Decodable>: Decodable {
