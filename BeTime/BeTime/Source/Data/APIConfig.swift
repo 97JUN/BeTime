@@ -9,5 +9,7 @@ import Foundation
 
 struct APIConfig {
   static let baseURL: String = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"
-  static let serviceKey: String = "82AhPCcoQ68FQepqQPEtdIUdXktjvffPdhesYZmqGhGhaVt6YuRy0PhhdF9IaayPbCQwOWgHpcJwSET29msx5A%3D%3D"
+  static let serviceKey: String =
+//  "82AhPCcoQ68FQepqQPEtdIUdXktjvffPdhesYZmqGhGhaVt6YuRy0PhhdF9IaayPbCQwOWgHpcJwSET29msx5A%3D%3D"
+  "82AhPCcoQ68FQepqQPEtdIUdXktjvffPdhesYZmqGhGhaVt6YuRy0PhhdF9IaayPbCQwOWgHpcJwSET29msx5A=="
 }
