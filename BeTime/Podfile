@@ -8,6 +8,8 @@ target 'BeTime' do
   pod 'PinLayout'
   pod 'Alamofire'
   pod 'FlexLayout'
+  pod 'RxSwift', '6.5.0'
+  pod 'RxCocoa', '6.5.0'
 
   # Pods for BeTime
 
