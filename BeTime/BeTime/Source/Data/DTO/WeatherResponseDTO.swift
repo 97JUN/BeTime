@@ -24,7 +24,8 @@ struct WeatherItem: Decodable {
 
 extension WeatherItem {
   func toDomain() -> WeatherForecast {
-    return .init(category: Category(rawValue: category) ?? .unknown,
+    return .init(
+      category: Category(rawValue: category) ?? .unknown,
                  time: fcstTime,
                  value: fcstValue)
   }

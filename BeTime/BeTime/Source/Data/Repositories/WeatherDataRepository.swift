@@ -8,9 +8,10 @@
 import Foundation
 
 final class WeatherDataRepository: WeatherDataRepositoryProtocol {
-  func fetchWeatherData(request: WeatherRequestDTO,
-                        completion: @escaping (Result<[WeatherItem], Error>) -> Void)
-  {
+  func fetchWeatherData(
+    request: WeatherRequestDTO,
+    completion: @escaping (Result<[WeatherItem], Error>) -> Void
+  ) {
     let url = request.baseURL
     let parameters = request.parameters()
 

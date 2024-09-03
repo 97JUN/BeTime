@@ -11,7 +11,8 @@ import Foundation
 final class APIManager {
   static let shared = APIManager()
 
-  func request<T: Decodable>(with url: String,
+  func request<T: Decodable>(
+    with url: String,
                              parameters: [String: String],
                              completion: @escaping (Result<T, Error>) -> Void)
   {

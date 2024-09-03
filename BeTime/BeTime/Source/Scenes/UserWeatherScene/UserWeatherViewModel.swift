@@ -34,7 +34,8 @@ final class UserWeatherViewModel {
   }
 
   func fetchWeather() {
-    self.fetchWeatherUseCase.execute(locationInfo: getUserLcoation(),
+    self.fetchWeatherUseCase.execute(
+      locationInfo: getUserLcoation(),
                                      dateInfo: getUserDate()
     ) { [weak self] result in
       switch result {
