@@ -8,13 +8,13 @@
 import Foundation
 
 final class UserWeatherViewModel {
-  private let fetchWeatherUseCase: FetchWeatherUseCaseProtocol
+  private let fetchWeatherUseCase: FetchWeatherUseCase
 
   private var skyConditionDatas: [WeatherForecast]?
   private var temperatureDatas: [WeatherForecast]?
   private var percipitationDatas: [WeatherForecast]?
 
-  init(searchWeatherUseCase: FetchWeatherUseCaseProtocol) {
+  init(searchWeatherUseCase: FetchWeatherUseCase) {
     self.fetchWeatherUseCase = searchWeatherUseCase
   }
 
@@ -36,7 +36,7 @@ final class UserWeatherViewModel {
   func fetchWeather() {
     self.fetchWeatherUseCase.execute(
       locationInfo: getUserLcoation(),
-                                     dateInfo: getUserDate()
+      dateInfo: getUserDate()
     ) { [weak self] result in
       switch result {
       case .success(let forcastData):
