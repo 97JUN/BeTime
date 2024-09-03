@@ -11,7 +11,10 @@ import Foundation
 final class APIManager {
   static let shared = APIManager()
 
-  func request<T: Decodable>(with url: String, parameters: [String: String], completion: @escaping (Result<T, Error>) -> Void) {
+  func request<T: Decodable>(with url: String,
+                             parameters: [String: String],
+                             completion: @escaping (Result<T, Error>) -> Void)
+  {
     AF.request(url, parameters: parameters)
       .validate()
       .responseData { response in

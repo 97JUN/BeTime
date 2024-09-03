@@ -8,10 +8,16 @@
 import Foundation
 
 final class WeatherDataRepository: WeatherDataRepositoryProtocol {
-  func requestWeatherData(with requestDTO: WeatherRequestDTO, completion: @escaping (Result<[WeatherItem], Error>) -> Void) {
-    let url = requestDTO.baseURL
-    let parameters = requestDTO.parameters()
-    APIManager.shared.request(with: url, parameters: parameters) { (result: Result<WeatherResponseDTO<WeatherItem>, Error>) in
+  func fetchWeatherData(request: WeatherRequestDTO,
+                        completion: @escaping (Result<[WeatherItem], Error>) -> Void)
+  {
+    let url = request.baseURL
+    let parameters = request.parameters()
+
+    APIManager.shared.request(
+      with: url,
+      parameters: parameters
+    ) { (result: Result<WeatherResponseDTO<WeatherItem>, Error>) in
       switch result {
       case .success(let weatherResponse):
         let items = weatherResponse.response.body.items.item

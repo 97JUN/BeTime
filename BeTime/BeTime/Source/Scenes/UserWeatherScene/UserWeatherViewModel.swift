@@ -34,7 +34,9 @@ final class UserWeatherViewModel {
   }
 
   func fetchWeather() {
-    self.fetchWeatherUseCase.execute(locationInfo: getUserLcoation(), dateInfo: getUserDate()) { [weak self] result in
+    self.fetchWeatherUseCase.execute(locationInfo: getUserLcoation(),
+                                     dateInfo: getUserDate()
+    ) { [weak self] result in
       switch result {
       case .success(let forcastData):
         self?.updateWeatherdata(with: forcastData)
