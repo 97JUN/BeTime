@@ -13,6 +13,7 @@ final class UserWeatherViewModel {
   private var skyConditionDatas: [WeatherForecast]?
   private var temperatureDatas: [WeatherForecast]?
   private var percipitationDatas: [WeatherForecast]?
+  private var cityName: String?
 
   init(searchWeatherUseCase: FetchWeatherUseCase) {
     self.fetchWeatherUseCase = searchWeatherUseCase
@@ -22,13 +23,28 @@ final class UserWeatherViewModel {
     self.checkLocationAuth()
   }
 
-  func getUserLcoation() -> Location {
-    // Location Core에서 위,경도 값 구한다음 격자값으로 변환
-    let location = Location(nx: "100", ny: "100") // 임시데이터
-    return location
+  // MARK: - Location Method
+
+  private func fetchUserLocation() {
+    LocationCore.shared.fetchUserLocation { [weak self] userLocation in
+      if let userLocation = userLocation {
+        self?.cityName = userLocation.cityName
+        self?.convertLocationData(userLocation)
+      } else {
+        print("fail Retry") // 실패시 어떻게? 빈데이터?
+      }
+    }
   }
 
-  func getUserDate() -> DateTime {
+  private func convertLocationData(_ userLocation: UserLocation) {
+    self.cityName = userLocation.cityName
+    let location = userLocation.convertToGRID(
+      lat: userLocation.latitude,
+      lng: userLocation.longitude
+    )
+    self.fetchWeatherData(for: location, on: self.getUserDate())
+  }
+
   private func checkLocationAuth() {
     let status = LocationCore.shared.checkAuthorizationStatus()
 
@@ -41,6 +57,7 @@ final class UserWeatherViewModel {
       break
     case .authorizedAlways:
       // 날씨 데이터 요청 하도록
+      self.fetchUserLocation()
     case .authorizedWhenInUse:
       // 백그라운드에서 사용할 필요 x
       break
@@ -48,14 +65,20 @@ final class UserWeatherViewModel {
       break
     }
   }
+
+  // MARK: - Date Method
+
+  private func getUserDate() -> DateTime {
     let time = DateTime.getDateTime()
     return time
   }
 
-  func fetchWeather() {
+  // MARK: - WeatherData Method
+
+  private func fetchWeatherData(for location: Location, on date: DateTime) {
     self.fetchWeatherUseCase.execute(
-      locationInfo: getUserLcoation(),
-      dateInfo: getUserDate()
+      locationInfo: location,
+      dateInfo: date
     ) { [weak self] result in
       switch result {
       case .success(let forcastData):
