@@ -10,7 +10,9 @@ import Foundation
 struct DateTime {
   let date: String // yyyyMMdd 형태
   let time: String // HHmm 형태
+}
 
+extension DateTime {
   static func getDateTime() -> DateTime {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyyMMdd"
