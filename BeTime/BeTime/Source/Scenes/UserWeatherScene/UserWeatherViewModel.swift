@@ -19,7 +19,7 @@ final class UserWeatherViewModel {
   }
 
   func viewDidLoad() {
-    self.fetchWeather()
+    self.checkLocationAuth()
   }
 
   func getUserLcoation() -> Location {
@@ -29,6 +29,25 @@ final class UserWeatherViewModel {
   }
 
   func getUserDate() -> DateTime {
+  private func checkLocationAuth() {
+    let status = LocationCore.shared.checkAuthorizationStatus()
+
+    switch status {
+    case .notDetermined:
+      // 사용자에게 권한 요청을 보낸다
+      LocationCore.shared.requestLocationAuthorization()
+    case .restricted, .denied:
+      // 시스템 설정에서 설정값을 요청하도록 UIAlertController생성
+      break
+    case .authorizedAlways:
+      // 날씨 데이터 요청 하도록
+    case .authorizedWhenInUse:
+      // 백그라운드에서 사용할 필요 x
+      break
+    @unknown default:
+      break
+    }
+  }
     let time = DateTime.getDateTime()
     return time
   }
