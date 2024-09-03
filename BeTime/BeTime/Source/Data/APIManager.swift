@@ -13,8 +13,8 @@ final class APIManager {
 
   func request<T: Decodable>(
     with url: String,
-                             parameters: [String: String],
-                             completion: @escaping (Result<T, Error>) -> Void)
+    parameters: [String: String],
+    completion: @escaping (Result<T, Error>) -> Void)
   {
     AF.request(url, parameters: parameters)
       .validate()

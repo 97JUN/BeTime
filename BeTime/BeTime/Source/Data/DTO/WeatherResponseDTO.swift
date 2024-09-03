@@ -26,7 +26,7 @@ extension WeatherItem {
   func toDomain() -> WeatherForecast {
     return .init(
       category: Category(rawValue: category) ?? .unknown,
-                 time: fcstTime,
-                 value: fcstValue)
+      time: fcstTime,
+      value: fcstValue)
   }
 }

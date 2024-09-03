@@ -10,5 +10,5 @@ import Foundation
 protocol WeatherDataRepositoryProtocol {
   func fetchWeatherData(
     request: WeatherRequestDTO,
-                        completion: @escaping (Result<[WeatherItem], Error>) -> Void)
+    completion: @escaping (Result<[WeatherItem], Error>) -> Void)
 }

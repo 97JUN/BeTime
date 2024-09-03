@@ -10,8 +10,8 @@ import Foundation
 protocol FetchWeatherUseCase {
   func execute(
     locationInfo: Location,
-               dateInfo: DateTime,
-               completion: @escaping (Result<[WeatherForecast], Error>) -> Void
+    dateInfo: DateTime,
+    completion: @escaping (Result<[WeatherForecast], Error>) -> Void
   )
 }
 
@@ -24,7 +24,7 @@ final class FetchWeatherUseCaseImpl: FetchWeatherUseCase {
 
   func execute(
     locationInfo: Location,
-               dateInfo: DateTime,
+    dateInfo: DateTime,
     completion: @escaping (Result<[WeatherForecast], Error>) -> Void
   ) {
     let requestDTO = WeatherRequestDTO(

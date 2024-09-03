@@ -22,7 +22,7 @@
 		29EEFADE2C79EEF000BEBE78 /* DateCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFADD2C79EEF000BEBE78 /* DateCore.swift */; };
 		29EEFAE02C7C452000BEBE78 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFADF2C7C452000BEBE78 /* APIConfig.swift */; };
 		29EEFAE22C7CBAA800BEBE78 /* APIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE12C7CBAA800BEBE78 /* APIResponseModel.swift */; };
-		29EEFAE42C7DAFA700BEBE78 /* FetchWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE32C7DAFA700BEBE78 /* FetchWeatherUseCase.swift */; };
+		29EEFAE42C7DAFA700BEBE78 /* FetchWeatherUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE32C7DAFA700BEBE78 /* FetchWeatherUseCaseImpl.swift */; };
 		29EEFAE72C7DB44700BEBE78 /* WeatherDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE62C7DB44700BEBE78 /* WeatherDataRepository.swift */; };
 		29EEFAE92C7DC99000BEBE78 /* UserWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAE82C7DC99000BEBE78 /* UserWeatherViewModel.swift */; };
 		29EEFAEB2C7DCFA900BEBE78 /* UserWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAEA2C7DCFA900BEBE78 /* UserWeatherViewController.swift */; };
@@ -47,7 +47,7 @@
 		29EEFADD2C79EEF000BEBE78 /* DateCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCore.swift; sourceTree = "<group>"; };
 		29EEFADF2C7C452000BEBE78 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		29EEFAE12C7CBAA800BEBE78 /* APIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseModel.swift; sourceTree = "<group>"; };
-		29EEFAE32C7DAFA700BEBE78 /* FetchWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchWeatherUseCase.swift; sourceTree = "<group>"; };
+		29EEFAE32C7DAFA700BEBE78 /* FetchWeatherUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchWeatherUseCaseImpl.swift; sourceTree = "<group>"; };
 		29EEFAE62C7DB44700BEBE78 /* WeatherDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataRepository.swift; sourceTree = "<group>"; };
 		29EEFAE82C7DC99000BEBE78 /* UserWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWeatherViewModel.swift; sourceTree = "<group>"; };
 		29EEFAEA2C7DCFA900BEBE78 /* UserWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWeatherViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		29EEFACE2C788FF500BEBE78 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				29EEFAE32C7DAFA700BEBE78 /* FetchWeatherUseCase.swift */,
+				29EEFAE32C7DAFA700BEBE78 /* FetchWeatherUseCaseImpl.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -353,7 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29EEFAE72C7DB44700BEBE78 /* WeatherDataRepository.swift in Sources */,
-				29EEFAE42C7DAFA700BEBE78 /* FetchWeatherUseCase.swift in Sources */,
+				29EEFAE42C7DAFA700BEBE78 /* FetchWeatherUseCaseImpl.swift in Sources */,
 				29894DEF2C75D150002A08DF /* ViewController.swift in Sources */,
 				29EEFAE02C7C452000BEBE78 /* APIConfig.swift in Sources */,
 				29EEFADE2C79EEF000BEBE78 /* DateCore.swift in Sources */,
