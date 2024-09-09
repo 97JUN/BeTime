@@ -14,17 +14,19 @@ struct Response<ItemType: Decodable>: Decodable {
 
 struct Header: Decodable {
   let resultCode: String
-  let resultMsg: String
+  let resultMessage: String
+
+  enum CodingKeys: String, CodingKey {
+    case resultCode
+    case resultMessage = "resultMsg"
+  }
 }
 
 struct Body<ItemType: Decodable>: Decodable {
   let dataType: String
-  let items: Item<ItemType>
+  let items: [ItemType]
   let pageNo: Int
   let numOfRows: Int
   let totalCount: Int
 }
 
-struct Item<ItemType: Decodable>: Decodable {
-  let item: [ItemType]
-}
