@@ -6,13 +6,10 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol FetchWeatherUseCase {
-  func execute(
-    locationInfo: Location,
-    dateInfo: DateTime,
-    completion: @escaping (Result<[WeatherForecast], Error>) -> Void
-  )
+  func execute(locationInfo: Location, dateInfo: DateTime) -> Single<[WeatherForecast]>
 }
 
 final class FetchWeatherUseCaseImpl: FetchWeatherUseCase {
@@ -22,29 +19,16 @@ final class FetchWeatherUseCaseImpl: FetchWeatherUseCase {
     self.weatherDataRepository = weatherRepository
   }
 
-  func execute(
-    locationInfo: Location,
-    dateInfo: DateTime,
-    completion: @escaping (Result<[WeatherForecast], Error>) -> Void
-  ) {
+  func execute(locationInfo: Location, dateInfo: DateTime) -> Single<[WeatherForecast]> {
     let requestDTO = WeatherRequestDTO(
       baseDate: dateInfo.date,
       baseTime: dateInfo.time,
       nx: locationInfo.nx,
-      ny: locationInfo.ny
-    )
-
-    weatherDataRepository.fetchWeatherData(request: requestDTO) { result in
-      switch result {
-      case .success(let response):
-        let forecasts: [WeatherForecast] = response
-          .map { $0.toDomain() }
-          .filter { $0.category != .unknown }
-        completion(.success(forecasts))
-
-      case .failure(let error):
-        completion(.failure(error))
+      ny: locationInfo.ny)
+    return weatherDataRepository.requestWeatherData(request: requestDTO)
+      .map { response in
+        let responses: [WeatherForecast] = response
+        return responses
       }
-    }
   }
 }
