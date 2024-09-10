@@ -17,7 +17,8 @@ class UserWeatherTableViewCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupViews()
-    }
+    self.selectionStyle = .none
+  }
 
   @available(*, unavailable)
   required init?(coder: NSCoder) {
@@ -53,7 +54,7 @@ class UserWeatherTableViewCell: UITableViewCell {
       .marginLeft(35).vCenter().width(60).height(30)
     precipitationLabel.pin.after(of: temperatureLabel)
       .marginLeft(20).vCenter().width(60).height(30)
-    }
+  }
 
   func configure(with image: UIImage?, timeText: String, tempText: String, preText: String) {
     let hour = Int(timeText.prefix(2))!

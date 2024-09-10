@@ -26,6 +26,6 @@ class MainTabBarController: UITabBarController {
     secondViewController.tabBarItem = UITabBarItem(title: "CityList", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet"))
 
     self.viewControllers = [firstViewController, secondViewController]
-    self.tabBar.backgroundColor = .lightGray
+    self.tabBar.backgroundColor = UIColor(red: 160/255, green: 194/255, blue: 204/255, alpha: 1.0)
   }
 }
