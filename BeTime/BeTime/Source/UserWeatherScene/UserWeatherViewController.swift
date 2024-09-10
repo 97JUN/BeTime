@@ -15,6 +15,7 @@ final class UserWeatherViewController: UIViewController {
 
   // MARK: - UI
 
+  private var viewModel: UserWeatherViewModel?
   private let tableView = UITableView()
 
   private var userLocationTitle: UILabel = {
@@ -84,16 +85,15 @@ final class UserWeatherViewController: UIViewController {
     interactor.userWeatherViewModelSubject
       .subscribe(onNext: { [weak self] viewModel in
         guard let self = self, let viewModel = viewModel else { return }
-        self.userCityLabel.text = viewModel.cityName
-        self.currentTemperatureValue.text = "\(viewModel.temperatureDatas[0].value)°C"
-        self.currentPercipitationValue.text = viewModel.percipitationDatas[0].value
-        self.userWeatherImage.image = self.updateSkyImage(value: viewModel.skyConditionDatas[0].value)
+        self.viewModel = viewModel
+        self.updateCurrentWeatherUI()
+        self.tableView.reloadData()
       })
       .disposed(by: disposeBag)
   }
-
 }
-//MARK: - UI Method
+
+// MARK: - UI Method
 
 extension UserWeatherViewController {
   override func viewDidLayoutSubviews() {
@@ -138,8 +138,10 @@ extension UserWeatherViewController {
 
   private func setupTableView() {
     tableView.dataSource = self
+    tableView.delegate = self
     tableView.backgroundColor = .clear
     tableView.separatorStyle = .singleLine
+    tableView.register(UserWeatherTableViewCell.self, forCellReuseIdentifier: "UserWeatherTableViewCell")
   }
 
   private func setupTableViewTitle() {
@@ -197,17 +199,36 @@ extension UserWeatherViewController {
     }
   }
 
+  private func updateCurrentWeatherUI() {
+    guard let viewModel = self.viewModel else { return }
+    self.userCityLabel.text = viewModel.cityName
+    self.currentTemperatureValue.text = "\(viewModel.temperatureDatas[0].value)°C"
+    self.currentPercipitationValue.text = viewModel.precipitationDatas[0].value
+    self.userWeatherImage.image = self.updateSkyImage(value: viewModel.skyConditionDatas[0].value)
+  }
 }
 
-extension UserWeatherViewController: UITableViewDataSource {
+extension UserWeatherViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return (viewModel?.skyConditionDatas.count ?? 0) - 1
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-    cell.textLabel?.text = "\(indexPath.row)"
-    cell.backgroundColor = .clear
+    let cell = tableView.dequeueReusableCell(withIdentifier: "UserWeatherTableViewCell", for: indexPath) as! UserWeatherTableViewCell
+    guard let viewModel = self.viewModel else { return cell }
+    let newIndex = indexPath.row + 1
+
+    let skyCondition = viewModel.skyConditionDatas[newIndex]
+    let temperature = viewModel.temperatureDatas[newIndex].value
+    let precipitation = viewModel.precipitationDatas[newIndex].value
+    let time = skyCondition.time
+    let image = self.updateSkyImage(value: skyCondition.value)
+
+    cell.configure(with: image, timeText: time, tempText: temperature, preText: precipitation)
     return cell
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 70
   }
 }
