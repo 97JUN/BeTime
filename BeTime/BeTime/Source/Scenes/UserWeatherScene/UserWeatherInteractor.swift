@@ -65,7 +65,7 @@ final class UserWeatherInteractor {
       // 날씨 데이터 요청 하도록
       self.fetchUserLocation()
     case .authorizedWhenInUse:
-      // 백그라운드에서 사용할 필요 x
+      self.fetchUserLocation()
       break
     @unknown default:
       break
