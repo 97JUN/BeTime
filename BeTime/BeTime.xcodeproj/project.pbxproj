@@ -19,6 +19,8 @@
 		29A04C562C9180D00040119A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C552C9180D00040119A /* RxCocoa */; };
 		29A04C582C9180D00040119A /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C572C9180D00040119A /* RxCocoa-Dynamic */; };
 		29A04C5A2C9180D00040119A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C592C9180D00040119A /* RxRelay */; };
+		29A04C5D2C9181070040119A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C5C2C9181070040119A /* Swinject */; };
+		29A04C5F2C9181070040119A /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C5E2C9181070040119A /* Swinject-Dynamic */; };
 		29EEFAD12C7892BC00BEBE78 /* WeatherResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD02C7892BC00BEBE78 /* WeatherResponseDTO.swift */; };
 		29EEFAD32C78A29400BEBE78 /* LocationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD22C78A29400BEBE78 /* LocationCore.swift */; };
 		29EEFAD82C78A3E200BEBE78 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD72C78A3E200BEBE78 /* WeatherForecast.swift */; };
@@ -71,7 +73,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				29A04C5A2C9180D00040119A /* RxRelay in Frameworks */,
+				29A04C5F2C9181070040119A /* Swinject-Dynamic in Frameworks */,
 				29A04C542C9180D00040119A /* RxBlocking-Dynamic in Frameworks */,
+				29A04C5D2C9181070040119A /* Swinject in Frameworks */,
 				29A04C582C9180D00040119A /* RxCocoa-Dynamic in Frameworks */,
 				1873BCBBC9894EFA95BB7E63 /* Pods_BeTime.framework in Frameworks */,
 				29A04C562C9180D00040119A /* RxCocoa in Frameworks */,
@@ -282,6 +286,8 @@
 				29A04C552C9180D00040119A /* RxCocoa */,
 				29A04C572C9180D00040119A /* RxCocoa-Dynamic */,
 				29A04C592C9180D00040119A /* RxRelay */,
+				29A04C5C2C9181070040119A /* Swinject */,
+				29A04C5E2C9181070040119A /* Swinject-Dynamic */,
 			);
 			productName = BeTime;
 			productReference = 29894DE72C75D150002A08DF /* BeTime.app */;
@@ -313,6 +319,7 @@
 			mainGroup = 29894DDE2C75D150002A08DF;
 			packageReferences = (
 				29A04C502C9180D00040119A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				29A04C5B2C9181070040119A /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 29894DE82C75D150002A08DF /* Products */;
 			projectDirPath = "";
@@ -635,6 +642,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		29A04C5B2C9181070040119A /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -662,6 +677,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29A04C502C9180D00040119A /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
+		};
+		29A04C5C2C9181070040119A /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29A04C5B2C9181070040119A /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		29A04C5E2C9181070040119A /* Swinject-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29A04C5B2C9181070040119A /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = "Swinject-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
