@@ -11,7 +11,7 @@ import RxSwift
 struct UserWeatherViewModel {
   let skyConditionDatas: [WeatherForecast]
   let temperatureDatas: [WeatherForecast]
-  let percipitationDatas: [WeatherForecast]
+  let precipitationDatas: [WeatherForecast]
   let cityName: String
 }
 
@@ -66,7 +66,7 @@ final class UserWeatherInteractor {
       // 날씨 데이터 요청 하도록
       self.fetchUserLocation()
     case .authorizedWhenInUse:
-      // 백그라운드에서 사용할 필요 x
+      self.fetchUserLocation()
       break
     @unknown default:
       break
@@ -96,7 +96,7 @@ final class UserWeatherInteractor {
     let viewModel = UserWeatherViewModel(
       skyConditionDatas: data.filter { $0.category == .skyCondition },
       temperatureDatas: data.filter { $0.category == .temperature },
-      percipitationDatas: data.filter { $0.category == .precipitation },
+      precipitationDatas: data.filter { $0.category == .precipitation },
       cityName: self.cityName ?? "알수 없음"
     )
     userWeatherViewModelSubject.onNext(viewModel)
