@@ -8,14 +8,19 @@
 import Foundation
 import RxSwift
 
+struct UserWeatherViewModel {
+  let skyConditionDatas: [WeatherForecast]
+  let temperatureDatas: [WeatherForecast]
+  let percipitationDatas: [WeatherForecast]
+  let cityName: String
+}
+
 final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
-
-  private var skyConditionDatas: [WeatherForecast]?
-  private var temperatureDatas: [WeatherForecast]?
-  private var percipitationDatas: [WeatherForecast]?
   private var cityName: String?
+  
   private let disposeBag = DisposeBag()
+  let userWeatherViewModelSubject = BehaviorSubject<UserWeatherViewModel?>(value: nil)
 
   init(searchWeatherUseCase: FetchWeatherUseCase) {
     self.fetchWeatherUseCase = searchWeatherUseCase
@@ -88,8 +93,12 @@ final class UserWeatherInteractor {
   }
 
   private func updateWeatherdata(with data: [WeatherForecast]) {
-    skyConditionDatas = data.filter { $0.category == .skyCondition }
-    temperatureDatas = data.filter { $0.category == .temperature }
-    percipitationDatas = data.filter { $0.category == .precipitation }
+    let viewModel = UserWeatherViewModel(
+      skyConditionDatas: data.filter { $0.category == .skyCondition },
+      temperatureDatas: data.filter { $0.category == .temperature },
+      percipitationDatas: data.filter { $0.category == .precipitation },
+      cityName: self.cityName ?? "알수 없음"
+    )
+    userWeatherViewModelSubject.onNext(viewModel)
   }
 }
