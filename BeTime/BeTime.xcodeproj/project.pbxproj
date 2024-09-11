@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1873BCBBC9894EFA95BB7E63 /* Pods_BeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9EC6676C51C13C802702E8 /* Pods_BeTime.framework */; };
+		290E269F2C92058F0091C8B3 /* UserWeatherDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E269E2C92058F0091C8B3 /* UserWeatherDIContainer.swift */; };
 		29894DEB2C75D150002A08DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29894DEA2C75D150002A08DF /* AppDelegate.swift */; };
 		29894DED2C75D150002A08DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29894DEC2C75D150002A08DF /* SceneDelegate.swift */; };
 		29894DEF2C75D150002A08DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29894DEE2C75D150002A08DF /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		290E269E2C92058F0091C8B3 /* UserWeatherDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWeatherDIContainer.swift; sourceTree = "<group>"; };
 		29894DE72C75D150002A08DF /* BeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29894DEA2C75D150002A08DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29894DEC2C75D150002A08DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 			path = BeTime;
 			sourceTree = "<group>";
 		};
+		29D870F82C92050E00C359E2 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				290E269E2C92058F0091C8B3 /* UserWeatherDIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
 		29EEFAC62C788E5200BEBE78 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +173,7 @@
 		29EEFACC2C788F4F00BEBE78 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				29D870F82C92050E00C359E2 /* DIContainer */,
 				29894DEA2C75D150002A08DF /* AppDelegate.swift */,
 				29894DEC2C75D150002A08DF /* SceneDelegate.swift */,
 			);
@@ -374,6 +385,7 @@
 				29EEFAEB2C7DCFA900BEBE78 /* UserWeatherViewController.swift in Sources */,
 				29EEFAE92C7DC99000BEBE78 /* UserWeatherInteractor.swift in Sources */,
 				29894DEB2C75D150002A08DF /* AppDelegate.swift in Sources */,
+				290E269F2C92058F0091C8B3 /* UserWeatherDIContainer.swift in Sources */,
 				29EEFAE22C7CBAA800BEBE78 /* APIResponseModel.swift in Sources */,
 				29EEFB1F2C8580F200BEBE78 /* APIManager.swift in Sources */,
 				29EEFB242C872B4800BEBE78 /* LocationMapper.swift in Sources */,
