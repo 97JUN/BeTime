@@ -21,6 +21,7 @@
 		29A04C5A2C9180D00040119A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C592C9180D00040119A /* RxRelay */; };
 		29A04C5D2C9181070040119A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C5C2C9181070040119A /* Swinject */; };
 		29A04C5F2C9181070040119A /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C5E2C9181070040119A /* Swinject-Dynamic */; };
+		29A04C622C9181310040119A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 29A04C612C9181310040119A /* Then */; };
 		29EEFAD12C7892BC00BEBE78 /* WeatherResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD02C7892BC00BEBE78 /* WeatherResponseDTO.swift */; };
 		29EEFAD32C78A29400BEBE78 /* LocationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD22C78A29400BEBE78 /* LocationCore.swift */; };
 		29EEFAD82C78A3E200BEBE78 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD72C78A3E200BEBE78 /* WeatherForecast.swift */; };
@@ -73,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29A04C5A2C9180D00040119A /* RxRelay in Frameworks */,
+				29A04C622C9181310040119A /* Then in Frameworks */,
 				29A04C5F2C9181070040119A /* Swinject-Dynamic in Frameworks */,
 				29A04C542C9180D00040119A /* RxBlocking-Dynamic in Frameworks */,
 				29A04C5D2C9181070040119A /* Swinject in Frameworks */,
@@ -288,6 +290,7 @@
 				29A04C592C9180D00040119A /* RxRelay */,
 				29A04C5C2C9181070040119A /* Swinject */,
 				29A04C5E2C9181070040119A /* Swinject-Dynamic */,
+				29A04C612C9181310040119A /* Then */,
 			);
 			productName = BeTime;
 			productReference = 29894DE72C75D150002A08DF /* BeTime.app */;
@@ -320,6 +323,7 @@
 			packageReferences = (
 				29A04C502C9180D00040119A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				29A04C5B2C9181070040119A /* XCRemoteSwiftPackageReference "Swinject" */,
+				29A04C602C9181310040119A /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 29894DE82C75D150002A08DF /* Products */;
 			projectDirPath = "";
@@ -650,6 +654,14 @@
 				minimumVersion = 2.9.1;
 			};
 		};
+		29A04C602C9181310040119A /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -687,6 +699,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29A04C5B2C9181070040119A /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = "Swinject-Dynamic";
+		};
+		29A04C612C9181310040119A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29A04C602C9181310040119A /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
