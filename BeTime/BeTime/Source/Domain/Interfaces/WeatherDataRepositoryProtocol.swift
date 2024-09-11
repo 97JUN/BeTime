@@ -6,9 +6,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol WeatherDataRepositoryProtocol {
-  func fetchWeatherData(
-    request: WeatherRequestDTO,
-    completion: @escaping (Result<[WeatherItem], Error>) -> Void)
+  func requestWeatherData(request: WeatherRequestDTO) -> Single<[WeatherForecast]>
 }
