@@ -14,6 +14,18 @@
 		29894DF22C75D150002A08DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29894DF02C75D150002A08DF /* Main.storyboard */; };
 		29894DF42C75D152002A08DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29894DF32C75D152002A08DF /* Assets.xcassets */; };
 		29894DF72C75D152002A08DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29894DF52C75D152002A08DF /* LaunchScreen.storyboard */; };
+		29D870D92C91F18E00C359E2 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870D82C91F18E00C359E2 /* FlexLayout */; };
+		29D870DC2C91F1A300C359E2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870DB2C91F1A300C359E2 /* Then */; };
+		29D870DF2C91F1B000C359E2 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870DE2C91F1B000C359E2 /* RxBlocking */; };
+		29D870E12C91F1B000C359E2 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E02C91F1B000C359E2 /* RxBlocking-Dynamic */; };
+		29D870E32C91F1B000C359E2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E22C91F1B000C359E2 /* RxCocoa */; };
+		29D870E52C91F1B000C359E2 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E42C91F1B000C359E2 /* RxCocoa-Dynamic */; };
+		29D870E72C91F1B000C359E2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E62C91F1B000C359E2 /* RxRelay */; };
+		29D870EA2C91F1B900C359E2 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E92C91F1B900C359E2 /* Swinject */; };
+		29D870EC2C91F1B900C359E2 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870EB2C91F1B900C359E2 /* Swinject-Dynamic */; };
+		29D870EF2C91F1C100C359E2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870EE2C91F1C100C359E2 /* Alamofire */; };
+		29D870F12C91F1C100C359E2 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870F02C91F1C100C359E2 /* AlamofireDynamic */; };
+		29D870F42C91F1C600C359E2 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870F32C91F1C600C359E2 /* PinLayout */; };
 		29EEFAD12C7892BC00BEBE78 /* WeatherResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD02C7892BC00BEBE78 /* WeatherResponseDTO.swift */; };
 		29EEFAD32C78A29400BEBE78 /* LocationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD22C78A29400BEBE78 /* LocationCore.swift */; };
 		29EEFAD82C78A3E200BEBE78 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFAD72C78A3E200BEBE78 /* WeatherForecast.swift */; };
@@ -51,7 +63,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29D870F42C91F1C600C359E2 /* PinLayout in Frameworks */,
+				29D870E32C91F1B000C359E2 /* RxCocoa in Frameworks */,
+				29D870F12C91F1C100C359E2 /* AlamofireDynamic in Frameworks */,
+				29D870E52C91F1B000C359E2 /* RxCocoa-Dynamic in Frameworks */,
 				1873BCBBC9894EFA95BB7E63 /* Pods_BeTime.framework in Frameworks */,
+				29D870EC2C91F1B900C359E2 /* Swinject-Dynamic in Frameworks */,
+				29D870DF2C91F1B000C359E2 /* RxBlocking in Frameworks */,
+				29D870EF2C91F1C100C359E2 /* Alamofire in Frameworks */,
+				29D870DC2C91F1A300C359E2 /* Then in Frameworks */,
+				29D870EA2C91F1B900C359E2 /* Swinject in Frameworks */,
+				29D870D92C91F18E00C359E2 /* FlexLayout in Frameworks */,
+				29D870E72C91F1B000C359E2 /* RxRelay in Frameworks */,
+				29D870E12C91F1B000C359E2 /* RxBlocking-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +244,20 @@
 			dependencies = (
 			);
 			name = BeTime;
+			packageProductDependencies = (
+				29D870D82C91F18E00C359E2 /* FlexLayout */,
+				29D870DB2C91F1A300C359E2 /* Then */,
+				29D870DE2C91F1B000C359E2 /* RxBlocking */,
+				29D870E02C91F1B000C359E2 /* RxBlocking-Dynamic */,
+				29D870E22C91F1B000C359E2 /* RxCocoa */,
+				29D870E42C91F1B000C359E2 /* RxCocoa-Dynamic */,
+				29D870E62C91F1B000C359E2 /* RxRelay */,
+				29D870E92C91F1B900C359E2 /* Swinject */,
+				29D870EB2C91F1B900C359E2 /* Swinject-Dynamic */,
+				29D870EE2C91F1C100C359E2 /* Alamofire */,
+				29D870F02C91F1C100C359E2 /* AlamofireDynamic */,
+				29D870F32C91F1C600C359E2 /* PinLayout */,
+			);
 			productName = BeTime;
 			productReference = 29894DE72C75D150002A08DF /* BeTime.app */;
 			productType = "com.apple.product-type.application";
@@ -248,6 +286,14 @@
 				Base,
 			);
 			mainGroup = 29894DDE2C75D150002A08DF;
+			packageReferences = (
+				29D870D72C91F18E00C359E2 /* XCRemoteSwiftPackageReference "FlexLayout" */,
+				29D870DA2C91F1A300C359E2 /* XCRemoteSwiftPackageReference "Then" */,
+				29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				29D870E82C91F1B900C359E2 /* XCRemoteSwiftPackageReference "Swinject" */,
+				29D870ED2C91F1C000C359E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				29D870F22C91F1C600C359E2 /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			productRefGroup = 29894DE82C75D150002A08DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -535,6 +581,120 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29D870D72C91F18E00C359E2 /* XCRemoteSwiftPackageReference "FlexLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/FlexLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.10;
+			};
+		};
+		29D870DA2C91F1A300C359E2 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+		29D870E82C91F1B900C359E2 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		29D870ED2C91F1C000C359E2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		29D870F22C91F1C600C359E2 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		29D870D82C91F18E00C359E2 /* FlexLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870D72C91F18E00C359E2 /* XCRemoteSwiftPackageReference "FlexLayout" */;
+			productName = FlexLayout;
+		};
+		29D870DB2C91F1A300C359E2 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870DA2C91F1A300C359E2 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		29D870DE2C91F1B000C359E2 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		29D870E02C91F1B000C359E2 /* RxBlocking-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxBlocking-Dynamic";
+		};
+		29D870E22C91F1B000C359E2 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		29D870E42C91F1B000C359E2 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		29D870E62C91F1B000C359E2 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870DD2C91F1B000C359E2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		29D870E92C91F1B900C359E2 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870E82C91F1B900C359E2 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		29D870EB2C91F1B900C359E2 /* Swinject-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870E82C91F1B900C359E2 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = "Swinject-Dynamic";
+		};
+		29D870EE2C91F1C100C359E2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870ED2C91F1C000C359E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		29D870F02C91F1C100C359E2 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870ED2C91F1C000C359E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+		29D870F32C91F1C600C359E2 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D870F22C91F1C600C359E2 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 29894DDF2C75D150002A08DF /* Project object */;
 }
