@@ -1,5 +1,5 @@
 //
-//  UserWeatherinteractor.swift
+//  UserWeatherInteractor.swift
 //  BeTime
 //
 //  Created by 쭌이 on 8/27/24.
@@ -15,7 +15,7 @@ struct UserWeatherViewModel {
   let cityName: String
 }
 
-final class UserWeatherinteractor {
+final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
   private var cityName: String?
   private let disposeBag = DisposeBag()

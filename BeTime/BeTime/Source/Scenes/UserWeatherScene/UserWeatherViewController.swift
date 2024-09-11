@@ -9,7 +9,7 @@ import RxSwift
 import UIKit
 
 final class UserWeatherViewController: UIViewController {
-  var interactor: UserWeatherinteractor!
+  var interactor: UserWeatherInteractor!
   private let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
