@@ -214,7 +214,6 @@
 				29894DE32C75D150002A08DF /* Sources */,
 				29894DE42C75D150002A08DF /* Frameworks */,
 				29894DE52C75D150002A08DF /* Resources */,
-				2B77999F88EDD54EC9E70D9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,23 +271,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B77999F88EDD54EC9E70D9C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeTime/Pods-BeTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeTime/Pods-BeTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeTime/Pods-BeTime-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2C8C021A66242ADADF11A42E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
