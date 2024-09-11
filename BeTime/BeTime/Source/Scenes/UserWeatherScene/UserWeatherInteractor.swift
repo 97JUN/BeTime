@@ -1,5 +1,5 @@
 //
-//  UserWeatherViewModel.swift
+//  UserWeatherInteractor.swift
 //  BeTime
 //
 //  Created by 쭌이 on 8/27/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class UserWeatherViewModel {
+final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
 
   private var skyConditionDatas: [WeatherForecast]?

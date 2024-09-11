@@ -8,7 +8,7 @@
 import UIKit
 
 final class UserWeatherViewController: UIViewController {
-   var viewModel: UserWeatherViewModel!
+   var viewModel: UserWeatherInteractor!
 
   override func viewDidLoad() {
     super.viewDidLoad()
