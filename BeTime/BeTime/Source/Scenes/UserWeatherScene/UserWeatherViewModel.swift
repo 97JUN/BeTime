@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 final class UserWeatherViewModel {
   private let fetchWeatherUseCase: FetchWeatherUseCase
@@ -14,6 +15,7 @@ final class UserWeatherViewModel {
   private var temperatureDatas: [WeatherForecast]?
   private var percipitationDatas: [WeatherForecast]?
   private var cityName: String?
+  private let disposeBag = DisposeBag()
 
   init(searchWeatherUseCase: FetchWeatherUseCase) {
     self.fetchWeatherUseCase = searchWeatherUseCase
@@ -76,17 +78,13 @@ final class UserWeatherViewModel {
   // MARK: - WeatherData Method
 
   private func fetchWeatherData(for location: Location, on date: DateTime) {
-    self.fetchWeatherUseCase.execute(
-      locationInfo: location,
-      dateInfo: date
-    ) { [weak self] result in
-      switch result {
-      case .success(let forcastData):
-        self?.updateWeatherdata(with: forcastData)
-      case .failure(let failure):
-        print("load fail: \(failure)")
+    self.fetchWeatherUseCase.execute(locationInfo: location, dateInfo: date)
+      .subscribe { [weak self] forecastData in
+        self?.updateWeatherdata(with: forecastData)
+      } onFailure: { error in
+        print("Load error: \(error)")
       }
-    }
+      .disposed(by: disposeBag)
   }
 
   private func updateWeatherdata(with data: [WeatherForecast]) {
