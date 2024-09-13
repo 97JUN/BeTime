@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
 
     let window = UIWindow(windowScene: windowScene)
-    let mainTabBarController = MainTabBarController()
+    let mainTabBarController = LaunchScreenViewController()
 
     window.rootViewController = mainTabBarController
     self.window = window
