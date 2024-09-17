@@ -18,14 +18,25 @@ final class MainTabBarController: UITabBarController {
   private func setTabBar() {
     userWeatherSceneDIContainer = UserWeatherSceneDIContainer()
     let userWeatherViewController = userWeatherSceneDIContainer.resolveUserWeatherViewController()
+    let cityListViewController = CityListViewController()
 
-    let firstViewController = UINavigationController(rootViewController: userWeatherViewController)
-    firstViewController.tabBarItem = UITabBarItem(title: "MyWeather", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+    userWeatherViewController.tabBarItem = UITabBarItem(
+      title: "MyWeather",
+      image: UIImage(systemName: "person"),
+      selectedImage: UIImage(systemName: "person.fill")
+    )
 
-    let secondViewController = UINavigationController(rootViewController: CityListViewController())
-    secondViewController.tabBarItem = UITabBarItem(title: "CityList", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet"))
+    cityListViewController.tabBarItem = UITabBarItem(
+      title: "CityList",
+      image: UIImage(systemName: "list.bullet"),
+      selectedImage: UIImage(systemName: "list.bullet")
+    )
 
-    self.viewControllers = [firstViewController, secondViewController]
-    self.tabBar.backgroundColor = .lightGray
+    self.viewControllers = [userWeatherViewController, cityListViewController]
+
+    let appearance = UITabBarAppearance()
+    appearance.backgroundColor = .appBackgroundColor
+    tabBar.standardAppearance = appearance
+    tabBar.scrollEdgeAppearance = appearance
   }
 }
