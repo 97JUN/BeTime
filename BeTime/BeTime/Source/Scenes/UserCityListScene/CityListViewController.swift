@@ -38,6 +38,7 @@ final class CityListViewController: UIViewController {
     $0.backgroundColor = .lightGray
     $0.layer.borderColor = UIColor.gray.cgColor
     $0.layer.borderWidth = 1
+    $0.isHidden = true
   }
 
   private let toolbar = UIToolbar().then {
@@ -54,13 +55,20 @@ final class CityListViewController: UIViewController {
         action: #selector(donePickerView)
       )], animated: false
     )
+    $0.isHidden = true
+  }
+
+  private lazy var emptyMessageLabel =  UILabel().then {
+    $0.text = "도시를 추가해 주세요"
+    $0.font = UIFont.appValueFont
+    $0.textColor = .black
+    $0.textAlignment = .center
+    $0.isHidden = true
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     self.setUpDelegate()
-    pickerView.isHidden = true
-    toolbar.isHidden = true
   }
 
   override func viewDidLayoutSubviews() {
@@ -79,6 +87,7 @@ final class CityListViewController: UIViewController {
     view.backgroundColor = .appBackgroundColor
     self.setUpSubViews()
     self.setupConstraints()
+    self.updateEmptyLabel()
   }
 
   private func setUpSubViews() {
@@ -87,6 +96,7 @@ final class CityListViewController: UIViewController {
      tableView,
      pickerView,
      toolbar,
+     emptyMessageLabel,
     ].forEach {
       view.addSubview($0)
     }
@@ -122,6 +132,15 @@ final class CityListViewController: UIViewController {
       .right()
       .bottom(to: pickerView.edge.top)
       .height(44)
+
+    emptyMessageLabel.pin
+      .center()
+      .width(200)
+      .height(50)
+  }
+
+  private func updateEmptyLabel() {
+    emptyMessageLabel.isHidden = !saveCities.isEmpty
   }
 
   @objc private func showPickerView() {
@@ -166,7 +185,8 @@ final class CityListViewController: UIViewController {
       saveCities.append(selectedCity)
     }
     tableView.reloadData()
-    cancelPickerView()
+    self.updateEmptyLabel()
+    self.cancelPickerView()
   }
 }
 
@@ -187,6 +207,7 @@ extension CityListViewController: UITableViewDelegate, UITableViewDataSource {
       saveCities.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    self.updateEmptyLabel()
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
