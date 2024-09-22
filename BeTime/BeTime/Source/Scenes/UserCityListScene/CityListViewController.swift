@@ -4,61 +4,54 @@
 //
 //  Created by 쭌이 on 9/12/24.
 //
+import UIKit
 
 import PinLayout
 import Then
-import UIKit
 
-final class CityListViewController: UIViewController {
+  // MARK: - CityListContentView
 
-  private var saveCities: [UserLocation] = []
-
-  private lazy var cityListTitleLabel = UILabel().then {
+final class CityListContentView: UIView {
+  let cityListTitleLabel = UILabel().then {
     $0.text = "날씨"
     $0.font = UIFont.appTitleFont
   }
 
-  private lazy var addCityButton = UIButton().then {
+  var addCityButton = UIButton().then {
     $0.setImage(UIImage(systemName: "plus"), for: .normal)
     $0.tintColor = .black
     $0.backgroundColor = .clear
     $0.contentMode = .scaleAspectFit
-    $0.addAction(UIAction { _ in
-      self.showPickerView()
-    }, for: .touchUpInside)
   }
 
-  private let tableView = UITableView().then {
+  let tableView = UITableView().then {
     $0.backgroundColor = .clear
     $0.separatorStyle = .singleLine
     $0.separatorColor = .black
   }
 
-  private let pickerView = UIPickerView().then {
+  let pickerView = UIPickerView().then {
     $0.backgroundColor = .lightGray
     $0.layer.borderColor = UIColor.gray.cgColor
     $0.layer.borderWidth = 1
     $0.isHidden = true
   }
 
-  private let toolbar = UIToolbar().then {
-    $0.setItems(
-      [UIBarButtonItem(
-        barButtonSystemItem: .cancel,
-        target: self,
-        action: #selector(cancelPickerView)
-      ),
-      UIBarButtonItem.flexibleSpace(),
-      UIBarButtonItem(
-        barButtonSystemItem: .done,
-        target: self,
-        action: #selector(donePickerView)
-      )], animated: false
-    )
-    $0.isHidden = true
-  }
+  let cancelButton = UIBarButtonItem(
+    barButtonSystemItem: .cancel,
+    target: nil,
+    action: nil
+  )
 
-  private lazy var emptyMessageLabel =  UILabel().then {
+  let doneButton = UIBarButtonItem(
+    barButtonSystemItem: .done,
+    target: nil,
+    action: nil
+  )
+
+  let toolbar = UIToolbar()
+
+  let emptyMessageLabel = UILabel().then {
     $0.text = "도시를 추가해 주세요"
     $0.font = UIFont.appValueFont
     $0.textColor = .black
@@ -66,39 +59,37 @@ final class CityListViewController: UIViewController {
     $0.isHidden = true
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.setUpDelegate()
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.setupToolbar()
+    setUpSubViews()
   }
 
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    self.updateUI()
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
-  private func setUpDelegate() {
-    tableView.delegate = self
-    tableView.dataSource = self
-    pickerView.delegate = self
-    pickerView.dataSource = self
-  }
-
-  private func updateUI() {
-    view.backgroundColor = .appBackgroundColor
-    self.setUpSubViews()
+  override func layoutSubviews() {
+    super.layoutSubviews()
     self.setupConstraints()
-    self.updateEmptyLabel()
+  }
+
+  private func setupToolbar() {
+    toolbar.isHidden = true
+    toolbar.setItems([cancelButton, .flexibleSpace(), doneButton], animated: false)
   }
 
   private func setUpSubViews() {
-    [cityListTitleLabel,
-     addCityButton,
-     tableView,
-     pickerView,
-     toolbar,
-     emptyMessageLabel,
+    [
+      cityListTitleLabel,
+      addCityButton,
+      tableView,
+      pickerView,
+      toolbar,
+      emptyMessageLabel,
     ].forEach {
-      view.addSubview($0)
+      addSubview($0)
     }
   }
 
@@ -119,12 +110,13 @@ final class CityListViewController: UIViewController {
       .marginTop(10)
       .left()
       .right()
-      .bottom(to: view.edge.bottom)
+      .bottom()
+      .marginBottom(safeAreaInsets.bottom)
 
     pickerView.pin
-      .bottom(self.view.safeAreaInsets.bottom)
-      .left(self.view.safeAreaInsets.left)
-      .right(self.view.safeAreaInsets.right)
+      .bottom(safeAreaInsets.bottom)
+      .left(safeAreaInsets.left)
+      .right(safeAreaInsets.right)
       .height(200)
 
     toolbar.pin
@@ -138,57 +130,97 @@ final class CityListViewController: UIViewController {
       .width(200)
       .height(50)
   }
+}
 
-  private func updateEmptyLabel() {
-    emptyMessageLabel.isHidden = !saveCities.isEmpty
+// MARK: - CityListViewController
+
+final class CityListViewController: UIViewController {
+  private var saveCities: [UserLocation] = []
+  private let contentView = CityListContentView()
+
+  override func loadView() {
+    self.view = contentView
   }
 
-  @objc private func showPickerView() {
-    pickerView.isHidden = false
-    toolbar.isHidden = false
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.setUpDelegate()
+    self.updateEmptyLabel()
+    self.addActions()
+  }
 
-    self.pickerView.pin
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    view.backgroundColor = .appBackgroundColor
+  }
+
+  private func setUpDelegate() {
+    contentView.tableView.delegate = self
+    contentView.tableView.dataSource = self
+    contentView.pickerView.delegate = self
+    contentView.pickerView.dataSource = self
+  }
+
+  private func updateEmptyLabel() {
+    contentView.emptyMessageLabel.isHidden = !saveCities.isEmpty
+  }
+
+  private func addActions() {
+    contentView.addCityButton.addAction(UIAction(handler: { [weak self] _ in
+      self?.showPickerView()
+    }), for: .touchUpInside)
+
+    contentView.cancelButton.primaryAction = UIAction(handler: { [weak self] _ in
+      self?.cancelPickerView()
+    })
+
+    contentView.doneButton.primaryAction = UIAction(handler: { [weak self] _ in
+      guard let selectedRow = self?.contentView.pickerView.selectedRow(inComponent: 0) else { return }
+      let selectedCity = cityLocations[selectedRow]
+      self?.donePickerView(with: selectedCity)
+    })
+  }
+
+  private func showPickerView() {
+    contentView.pickerView.isHidden = false
+    contentView.toolbar.isHidden = false
+
+    contentView.pickerView.pin
       .bottom(self.view.safeAreaInsets.bottom)
       .left(self.view.safeAreaInsets.left)
       .right(self.view.safeAreaInsets.right)
       .height(200)
-    self.toolbar.pin
+
+    contentView.toolbar.pin
       .left()
       .right()
-      .bottom(to: self.pickerView.edge.top)
+      .bottom(to: contentView.pickerView.edge.top)
       .height(44)
 
-    self.tableView.pin
-      .below(of: self.cityListTitleLabel)
+    contentView.tableView.pin
+      .below(of: contentView.cityListTitleLabel)
       .marginTop(10)
       .left()
       .right()
-      .bottom(to: self.toolbar.edge.top)
-
-    self.view.layoutIfNeeded()
+      .bottom(to: contentView.toolbar.edge.top)
   }
 
-  @objc private func cancelPickerView() {
-    self.pickerView.pin
-      .bottom(-200)
-    self.toolbar.pin
-      .bottom(-44)
-    self.view.layoutIfNeeded()
-    self.pickerView.isHidden = true
-    self.toolbar.isHidden = true
+  private func cancelPickerView() {
+    contentView.pickerView.isHidden = true
+    contentView.toolbar.isHidden = true
   }
 
-  @objc private func donePickerView() {
-    let selectedRow = pickerView.selectedRow(inComponent: 0)
-    let selectedCity = cityLocations[selectedRow]
+  func donePickerView(with selectedCity: UserLocation) {
     if !saveCities.contains(where: { $0.cityName == selectedCity.cityName }) {
       saveCities.append(selectedCity)
     }
-    tableView.reloadData()
+    contentView.tableView.reloadData()
     self.updateEmptyLabel()
     self.cancelPickerView()
   }
 }
+
+// MARK: - TableViewDelegate
 
 extension CityListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -214,6 +246,8 @@ extension CityListViewController: UITableViewDelegate, UITableViewDataSource {
     return 70
   }
 }
+
+// MARK: - PickerViewDelegate
 
 extension CityListViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
