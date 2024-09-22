@@ -9,15 +9,15 @@ import UIKit
 
 extension UIFont {
 
-  static let appTitleFont: UIFont = {
+  static let beTimeTitleFont: UIFont = {
     return UIFont.systemFont(ofSize: 25)
   }()
 
-  static let appSubTitleFont: UIFont = {
+  static let beTimeSubTitleFont: UIFont = {
     return UIFont.systemFont(ofSize: 20)
   }()
 
-  static let appValueFont: UIFont = {
+  static let beTimeValueFont: UIFont = {
     return UIFont.systemFont(ofSize: 15)
   }()
 
