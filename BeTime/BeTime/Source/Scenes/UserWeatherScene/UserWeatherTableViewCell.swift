@@ -5,18 +5,33 @@
 //  Created by 쭌이 on 9/12/24.
 //
 
-import PinLayout
 import UIKit
 
+import PinLayout
+import Then
+
 final class UserWeatherTableViewCell: UITableViewCell {
-  private let weatherImage = UIImageView()
-  private let timeLabel = UILabel()
-  private let temperatureLabel = UILabel()
-  private let precipitationLabel = UILabel()
+  
+  private let weatherImage = UIImageView().then {
+    $0.contentMode = .scaleAspectFit
+  }
+
+  private let timeLabel = UILabel().then {
+    $0.font = UIFont.beTimeValueFont
+  }
+
+  private let temperatureLabel = UILabel().then {
+    $0.font = UIFont.beTimeValueFont
+  }
+
+  private let precipitationLabel = UILabel().then {
+    $0.font = UIFont.beTimeValueFont
+  }
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setupViews()
+    backgroundColor = .clear
+    setupSubViews()
   }
 
   @available(*, unavailable)
@@ -24,35 +39,48 @@ final class UserWeatherTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private func setupViews() {
-    weatherImage.contentMode = .scaleAspectFit
-
-    timeLabel.font = UIFont.systemFont(ofSize: 15)
-    temperatureLabel.font = UIFont.systemFont(ofSize: 15)
-    precipitationLabel.font = UIFont.systemFont(ofSize: 15)
-
-    contentView.backgroundColor = .clear
-    backgroundColor = .clear
-
-    contentView.addSubview(weatherImage)
-    contentView.addSubview(timeLabel)
-    contentView.addSubview(temperatureLabel)
-    contentView.addSubview(precipitationLabel)
-  }
-
   override func layoutSubviews() {
     super.layoutSubviews()
     self.updateLayout()
   }
 
+  private func setupSubViews() {
+    [
+      weatherImage,
+      timeLabel,
+      temperatureLabel,
+      precipitationLabel,
+    ].forEach {
+      addSubview($0)
+    }
+  }
+
   private func updateLayout() {
-    weatherImage.pin.left(20).vCenter().size(40)
-    timeLabel.pin.after(of: weatherImage)
-      .marginLeft(60).vCenter().width(60).height(30)
-    temperatureLabel.pin.after(of: timeLabel)
-      .marginLeft(35).vCenter().width(60).height(30)
-    precipitationLabel.pin.after(of: temperatureLabel)
-      .marginLeft(20).vCenter().width(60).height(30)
+    weatherImage.pin
+      .vCenter()
+      .left(20)
+      .size(40)
+
+    timeLabel.pin
+      .after(of: weatherImage)
+      .vCenter()
+      .marginLeft(60)
+      .width(60)
+      .height(30)
+
+    temperatureLabel.pin
+      .after(of: timeLabel)
+      .vCenter()
+      .marginLeft(35)
+      .width(60)
+      .height(30)
+
+    precipitationLabel.pin
+      .after(of: temperatureLabel)
+      .vCenter()
+      .marginLeft(20)
+      .width(60)
+      .height(30)
   }
 
   func configure(with image: UIImage?, timeText: String, tempText: String, preText: String) {
