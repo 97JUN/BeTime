@@ -61,6 +61,7 @@ final class CityListContentView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
+    self.backgroundColor = .beTimeBackgroundColor
     self.setupToolbar()
     setUpSubViews()
   }
@@ -147,11 +148,6 @@ final class CityListViewController: UIViewController {
     self.setUpDelegate()
     self.updateEmptyLabel()
     self.addActions()
-  }
-
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    view.backgroundColor = .beTimeBackgroundColor
   }
 
   private func setUpDelegate() {
