@@ -32,10 +32,15 @@ final class MainTabBarController: UITabBarController {
       selectedImage: UIImage(systemName: "list.bullet")
     )
 
-    self.viewControllers = [userWeatherViewController, cityListViewController]
+    self.viewControllers = [
+      userWeatherViewController,
+      cityListViewController,
+    ]
 
-    let appearance = UITabBarAppearance()
-    appearance.backgroundColor = .beTimeBackgroundColor
+    let appearance = UITabBarAppearance().then {
+      $0.backgroundColor = .beTimeBackgroundColor
+    }
+    
     tabBar.standardAppearance = appearance
     tabBar.scrollEdgeAppearance = appearance
   }
