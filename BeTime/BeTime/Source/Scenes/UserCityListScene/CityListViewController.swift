@@ -14,7 +14,7 @@ import Then
 final class CityListContentView: UIView {
   let cityListTitleLabel = UILabel().then {
     $0.text = "날씨"
-    $0.font = UIFont.appTitleFont
+    $0.font = UIFont.beTimeTitleFont
   }
 
   var addCityButton = UIButton().then {
@@ -53,7 +53,7 @@ final class CityListContentView: UIView {
 
   let emptyMessageLabel = UILabel().then {
     $0.text = "도시를 추가해 주세요"
-    $0.font = UIFont.appValueFont
+    $0.font = UIFont.beTimeValueFont
     $0.textColor = .black
     $0.textAlignment = .center
     $0.isHidden = true
@@ -151,7 +151,7 @@ final class CityListViewController: UIViewController {
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    view.backgroundColor = .appBackgroundColor
+    view.backgroundColor = .beTimeBackgroundColor
   }
 
   private func setUpDelegate() {

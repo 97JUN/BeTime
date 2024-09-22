@@ -35,7 +35,7 @@ final class MainTabBarController: UITabBarController {
     self.viewControllers = [userWeatherViewController, cityListViewController]
 
     let appearance = UITabBarAppearance()
-    appearance.backgroundColor = .appBackgroundColor
+    appearance.backgroundColor = .beTimeBackgroundColor
     tabBar.standardAppearance = appearance
     tabBar.scrollEdgeAppearance = appearance
   }
