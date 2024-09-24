@@ -220,9 +220,17 @@ final class UserWeatherContentView: UIView {
 
 final class UserWeatherViewController: UIViewController {
   private let contentView = UserWeatherContentView()
-  var interactor: UserWeatherInteractor!
+  var interactor: UserWeatherInteractor
   private let disposeBag = DisposeBag()
 
+  init(interactor: UserWeatherInteractor) {
+    self.interactor = interactor
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   private var viewModel: UserWeatherViewModel?
 
   // MARK: - Lifecycle
