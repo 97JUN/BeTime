@@ -19,5 +19,5 @@ let cityLocations: [UserLocation] = [
     UserLocation(cityName: "전라남도", latitude: 34.8679, longitude: 126.9910),
     UserLocation(cityName: "충청남도", latitude: 36.5184, longitude: 126.8000),
     UserLocation(cityName: "충청북도", latitude: 36.6354, longitude: 127.4913),
-    UserLocation(cityName: "제주도", latitude: 33.4996, longitude: 126.5312)
+    UserLocation(cityName: "제주도", latitude: 33.4996, longitude: 126.5312),
 ]
