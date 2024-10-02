@@ -10,22 +10,28 @@ import UIKit
 import PinLayout
 import Then
 
+struct UserWeatherCellViewModel {
+  let image: UIImage?
+  let timeText: String?
+  let temperatureText: String?
+  let precipitationText: String?
+}
+
 final class UserWeatherTableViewCell: UITableViewCell {
-  
-  private let weatherImage = UIImageView().then {
+  private let weatherImageView = UIImageView().then {
     $0.contentMode = .scaleAspectFit
   }
 
   private let timeLabel = UILabel().then {
-    $0.font = UIFont.beTimeValueFont
+    $0.font = UIFont.labelRegular
   }
 
   private let temperatureLabel = UILabel().then {
-    $0.font = UIFont.beTimeValueFont
+    $0.font = UIFont.labelRegular
   }
 
   private let precipitationLabel = UILabel().then {
-    $0.font = UIFont.beTimeValueFont
+    $0.font = UIFont.labelRegular
   }
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,7 +52,7 @@ final class UserWeatherTableViewCell: UITableViewCell {
 
   private func setupSubViews() {
     [
-      weatherImage,
+      weatherImageView,
       timeLabel,
       temperatureLabel,
       precipitationLabel,
@@ -56,13 +62,13 @@ final class UserWeatherTableViewCell: UITableViewCell {
   }
 
   private func updateLayout() {
-    weatherImage.pin
+    weatherImageView.pin
       .vCenter()
       .left(20)
       .size(40)
 
     timeLabel.pin
-      .after(of: weatherImage)
+      .after(of: weatherImageView)
       .vCenter()
       .marginLeft(60)
       .width(60)
@@ -83,13 +89,13 @@ final class UserWeatherTableViewCell: UITableViewCell {
       .height(30)
   }
 
-  func configure(with image: UIImage?, timeText: String, tempText: String, preText: String) {
-    let hour = Int(timeText.prefix(2))!
-    let minute = Int(timeText.suffix(2))!
+  func configure(with viewModel: UserWeatherCellViewModel) {
+    let hour = Int(viewModel.timeText?.prefix(2) ?? "00") ?? 0
+    let minute = Int(viewModel.timeText?.suffix(2) ?? "00") ?? 0
 
-    weatherImage.image = image
+    weatherImageView.image = viewModel.image
     timeLabel.text = String(format: "%02d:%02d", hour, minute)
-    temperatureLabel.text = "\(tempText)°C"
-    precipitationLabel.text = preText
+    temperatureLabel.text = "\((viewModel.temperatureText) ?? "--")°C"
+    precipitationLabel.text = viewModel.precipitationText
   }
 }
