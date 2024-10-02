@@ -68,7 +68,7 @@ final class CityListContentView: UIView {
   override init(frame: CGRect) {
     self.cityList = CityList()
     super.init(frame: frame)
-    self.backgroundColor = .beTimeBackgroundColor
+    self.backgroundColor = .backgroundColor
     self.setupDelegate()
     self.setUpSubViews()
     self.setupToolbar()

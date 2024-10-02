@@ -37,7 +37,7 @@ final class MainTabBarController: UITabBarController {
     ]
 
     let appearance = UITabBarAppearance().then {
-      $0.backgroundColor = .beTimeBackgroundColor
+      $0.backgroundColor = .backgroundColor
     }
     
     tabBar.standardAppearance = appearance

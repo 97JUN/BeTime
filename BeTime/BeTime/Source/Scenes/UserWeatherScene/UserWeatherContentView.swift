@@ -92,7 +92,7 @@ final class UserWeatherContentView: UIView {
         cityName: ""
       )
     )
-    self.backgroundColor = .beTimeBackgroundColor
+    self.backgroundColor = .backgroundColor
     self.setDelegate()
     self.setupUIElements()
     self.setupSubviews()
