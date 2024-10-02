@@ -8,13 +8,6 @@
 import Foundation
 import RxSwift
 
-struct UserWeatherViewModel {
-  let skyConditionDatas: [WeatherForecast]
-  let temperatureDatas: [WeatherForecast]
-  let precipitationDatas: [WeatherForecast]
-  let cityName: String
-}
-
 final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
   private var cityName: String?
