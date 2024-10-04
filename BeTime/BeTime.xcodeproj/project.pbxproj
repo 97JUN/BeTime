@@ -38,6 +38,7 @@
 		29EEFB1D2C80700300BEBE78 /* WeatherDataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFB1C2C80700300BEBE78 /* WeatherDataRepositoryProtocol.swift */; };
 		29EEFB1F2C8580F200BEBE78 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFB1E2C8580F200BEBE78 /* APIManager.swift */; };
 		29EEFB242C872B4800BEBE78 /* LocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFB232C872B4800BEBE78 /* LocationMapper.swift */; };
+		29F79C1B2CB005D100D05535 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 29F79C1A2CB005D100D05535 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 			files = (
 				29D870F42C91F1C600C359E2 /* PinLayout in Frameworks */,
 				29D870E32C91F1B000C359E2 /* RxCocoa in Frameworks */,
+				29F79C1B2CB005D100D05535 /* RealmSwift in Frameworks */,
 				29D870F12C91F1C100C359E2 /* AlamofireDynamic in Frameworks */,
 				29D870E52C91F1B000C359E2 /* RxCocoa-Dynamic in Frameworks */,
 				1873BCBBC9894EFA95BB7E63 /* Pods_BeTime.framework in Frameworks */,
@@ -296,6 +298,7 @@
 				29D870EE2C91F1C100C359E2 /* Alamofire */,
 				29D870F02C91F1C100C359E2 /* AlamofireDynamic */,
 				29D870F32C91F1C600C359E2 /* PinLayout */,
+				29F79C1A2CB005D100D05535 /* RealmSwift */,
 			);
 			productName = BeTime;
 			productReference = 29894DE72C75D150002A08DF /* BeTime.app */;
@@ -332,6 +335,7 @@
 				29D870E82C91F1B900C359E2 /* XCRemoteSwiftPackageReference "Swinject" */,
 				29D870ED2C91F1C000C359E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				29D870F22C91F1C600C359E2 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				29F79C192CB005D100D05535 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 29894DE82C75D150002A08DF /* Products */;
 			projectDirPath = "";
@@ -656,6 +660,14 @@
 				minimumVersion = 1.10.5;
 			};
 		};
+		29F79C192CB005D100D05535 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -718,6 +730,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29D870F22C91F1C600C359E2 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		29F79C1A2CB005D100D05535 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29F79C192CB005D100D05535 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
