@@ -29,16 +29,14 @@ final class UserWeatherViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    interactor.delegate = self
     interactor.viewDidLoad()
-    self.fetchViewModel()
+  }
+}
+
+extension UserWeatherViewController: UserWeatherInteractorDelegate {
+  func didUpdateWeatherData(_ viewModel: UserWeatherViewModel) {
+    self.contentView.configure(viewModel: viewModel)
   }
 
-  private func fetchViewModel() {
-    interactor.userWeatherViewModelSubject
-      .subscribe(onNext: { [weak self] viewModel in
-        guard let self = self, let viewModel = viewModel else { return }
-        self.contentView.configure(viewModel: viewModel)
-      })
-      .disposed(by: disposeBag)
-  }
 }
