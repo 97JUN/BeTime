@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol UserWeatherInteractorDelegate: AnyObject {
   func didUpdateWeatherData(_ viewModel: UserWeatherViewModel)
@@ -15,7 +14,6 @@ protocol UserWeatherInteractorDelegate: AnyObject {
 final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
 
-  private let disposeBag = DisposeBag()
   weak var delegate: UserWeatherInteractorDelegate?
 
   init(searchWeatherUseCase: FetchWeatherUseCase) {
@@ -24,6 +22,7 @@ final class UserWeatherInteractor {
 
   func viewDidLoad() {
     self.checkLocationAuth()
+    fetchWeatherUseCase.delegate = self
   }
 
   private func fetchUserLocation() {
@@ -42,7 +41,9 @@ final class UserWeatherInteractor {
       lat: userLocation.latitude,
       lng: userLocation.longitude
     )
-    self.bindingWeatherData(for: location, on: self.getUserDate(), cityName: cityName)
+    self.fetchWeatherUseCase.execute(locationInfo: location,
+                                     dateInfo: self.getUserDate(),
+                                     cityName: cityName)
   }
 
   private func checkLocationAuth() {
@@ -71,16 +72,6 @@ final class UserWeatherInteractor {
     return time
   }
 
-  private func bindingWeatherData(for location: Location, on date: DateTime, cityName: String) {
-    self.fetchWeatherUseCase.execute(locationInfo: location, dateInfo: date)
-      .subscribe { [weak self] forecastData in
-        self?.updateWeatherdata(with: forecastData, cityName: cityName)
-      } onFailure: { error in
-        print("Load error: \(error)")
-      }
-      .disposed(by: disposeBag)
-  }
-
   private func updateWeatherdata(with data: [WeatherForecast], cityName: String) {
     let viewModel = UserWeatherViewModel(
       skyConditionDatas: data.filter { $0.category == .skyCondition },
@@ -89,5 +80,11 @@ final class UserWeatherInteractor {
       cityName: cityName
     )
     delegate?.didUpdateWeatherData(viewModel)
+  }
+}
+
+extension UserWeatherInteractor: FetchWeatherUseCaseDelegate {
+  func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String) {
+    self.updateWeatherdata(with: weatherForcasts, cityName: cityName)
   }
 }
