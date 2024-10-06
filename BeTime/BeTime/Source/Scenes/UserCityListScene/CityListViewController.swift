@@ -6,9 +6,6 @@
 //
 import UIKit
 
-import PinLayout
-import Then
-
 final class CityListViewController: UIViewController {
   private let contentView = CityListContentView()
 
