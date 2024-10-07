@@ -319,6 +319,7 @@ extension UserWeatherContentView: UITableViewDataSource, UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "UserWeatherTableViewCell", for: indexPath) as! UserWeatherTableViewCell
+    cell.selectionStyle = .none
     guard let viewModel = self.viewModel else { return cell }
     let newIndex = indexPath.row + 1
 
