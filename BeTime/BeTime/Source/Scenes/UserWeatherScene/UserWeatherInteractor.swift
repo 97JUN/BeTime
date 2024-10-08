@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol UserWeatherInteractorDelegate: AnyObject {
   func didUpdateWeatherData(_ viewModel: UserWeatherViewModel)
@@ -23,7 +24,12 @@ final class UserWeatherInteractor {
 
   func viewDidLoad() {
     self.checkLocationAuth()
+    self.setDelegate()
+  }
+
+  private func setDelegate() {
     fetchWeatherUseCase.delegate = self
+    LocationCore.shared.delegate = self
   }
 
   private func fetchUserLocation() {
@@ -85,5 +91,20 @@ final class UserWeatherInteractor {
 extension UserWeatherInteractor: FetchWeatherUseCaseDelegate {
   func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String) {
     self.updateWeatherdata(with: weatherForcasts, cityName: cityName)
+  }
+}
+
+extension UserWeatherInteractor: LocationAuthorizationDelegate {
+  func authorizationDidChange(status: CLAuthorizationStatus) {
+    switch status {
+    case .authorizedWhenInUse, .authorizedAlways:
+      self.fetchUserLocation()
+    case .denied, .restricted:
+      delegate?.deniedLocationAuth()
+    case .notDetermined:
+      break
+    @unknown default:
+      break
+    }
   }
 }
