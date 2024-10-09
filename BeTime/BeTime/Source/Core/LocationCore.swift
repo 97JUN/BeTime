@@ -8,7 +8,7 @@
 import CoreLocation
 import Foundation
 
-struct UserLocation {
+struct UserLocation: Codable {
   let cityName: String
   let latitude: Double // 위도
   let longitude: Double // 경도
