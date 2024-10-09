@@ -32,9 +32,23 @@ final class AppDIContainer {
       )
       return UserWeatherViewFactoryImpl(dependency: dependency)
     }.inObjectScope(.container)
+
+    container.register(CityDetailViewFactory.self) { resolver in
+      let fetchWeatherUseCase = resolver.resolve(FetchWeatherUseCase.self)!
+      let dependency = CityDetailViewDependency(
+        cityDetailInteractor: CityDetailInteractor(
+          fetchWeatherUseCase: fetchWeatherUseCase
+        )
+      )
+      return CityDetailViewFactoryImpl(cityDetailViewDependency: dependency)
+    }.inObjectScope(.container)
   }
 
   func getUserWeatherViewFactory() -> UserWeatherViewFactory {
     return container.resolve(UserWeatherViewFactory.self)!
+  }
+
+  func getCityDetailViewFactory() -> CityDetailViewFactory {
+    return container.resolve(CityDetailViewFactory.self)!
   }
 }
