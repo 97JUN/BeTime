@@ -14,9 +14,19 @@ struct UserLocation {
   let longitude: Double // 경도
 }
 
-final class LocationCore {
+protocol LocationAuthorizationDelegate: AnyObject {
+  func authorizationDidChange(status: CLAuthorizationStatus)
+}
+
+final class LocationCore: NSObject {
   static let shared = LocationCore()
   private let locationManager = CLLocationManager()
+  weak var delegate: LocationAuthorizationDelegate?
+
+  init(delegate: LocationAuthorizationDelegate? = nil) {
+    super.init()
+    locationManager.delegate = self
+  }
 
   func requestLocationAuthorization() {
     locationManager.requestWhenInUseAuthorization()
@@ -62,5 +72,11 @@ final class LocationCore {
       let cityName = placeMark.locality
       completion(cityName)
     }
+  }
+}
+
+extension LocationCore: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    delegate?.authorizationDidChange(status: status)
   }
 }
