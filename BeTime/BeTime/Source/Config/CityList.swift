@@ -4,7 +4,8 @@
 //
 //  Created by 쭌이 on 9/14/24.
 //
-let cityLocations: [UserLocation] = [
+struct CityList {
+  private let cityLocations: [UserLocation] = [
     UserLocation(cityName: "서울특별시", latitude: 37.5665, longitude: 126.9780),
     UserLocation(cityName: "인천광역시", latitude: 37.4563, longitude: 126.7052),
     UserLocation(cityName: "울산광역시", latitude: 35.5384, longitude: 129.3114),
@@ -19,5 +20,25 @@ let cityLocations: [UserLocation] = [
     UserLocation(cityName: "전라남도", latitude: 34.8679, longitude: 126.9910),
     UserLocation(cityName: "충청남도", latitude: 36.5184, longitude: 126.8000),
     UserLocation(cityName: "충청북도", latitude: 36.6354, longitude: 127.4913),
-    UserLocation(cityName: "제주도", latitude: 33.4996, longitude: 126.5312)
-]
+    UserLocation(cityName: "제주도", latitude: 33.4996, longitude: 126.5312),
+  ]
+
+  func count() -> Int {
+    return cityLocations.count
+  }
+
+  func cityName(at index: Int) -> String {
+    guard cityLocations.count > index else { return "" }
+    return cityLocations[index].cityName
+  }
+
+  func getCity(at index: Int) -> UserLocation {
+    guard cityLocations.count > index else { return UserLocation(
+      cityName: "",
+      latitude: 0.00,
+      longitude: 0.00)
+    }
+    return cityLocations[index]
+  }
+
+}

@@ -6,21 +6,15 @@
 //
 
 import Foundation
-import RxSwift
 
-struct UserWeatherViewModel {
-  let skyConditionDatas: [WeatherForecast]
-  let temperatureDatas: [WeatherForecast]
-  let precipitationDatas: [WeatherForecast]
-  let cityName: String
+protocol UserWeatherInteractorDelegate: AnyObject {
+  func didUpdateWeatherData(_ viewModel: UserWeatherViewModel)
 }
 
 final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
-  private var cityName: String?
-  
-  private let disposeBag = DisposeBag()
-  let userWeatherViewModelSubject = BehaviorSubject<UserWeatherViewModel?>(value: nil)
+
+  weak var delegate: UserWeatherInteractorDelegate?
 
   init(searchWeatherUseCase: FetchWeatherUseCase) {
     self.fetchWeatherUseCase = searchWeatherUseCase
@@ -28,14 +22,12 @@ final class UserWeatherInteractor {
 
   func viewDidLoad() {
     self.checkLocationAuth()
+    fetchWeatherUseCase.delegate = self
   }
-
-  // MARK: - Location Method
 
   private func fetchUserLocation() {
     LocationCore.shared.fetchUserLocation { [weak self] userLocation in
       if let userLocation = userLocation {
-        self?.cityName = userLocation.cityName
         self?.convertLocationData(userLocation)
       } else {
         print("fail Retry") // 실패시 어떻게? 빈데이터?
@@ -44,12 +36,14 @@ final class UserWeatherInteractor {
   }
 
   private func convertLocationData(_ userLocation: UserLocation) {
-    self.cityName = userLocation.cityName
+    let cityName = userLocation.cityName
     let location = userLocation.convertToGRID(
       lat: userLocation.latitude,
       lng: userLocation.longitude
     )
-    self.fetchWeatherData(for: location, on: self.getUserDate())
+    self.fetchWeatherUseCase.execute(locationInfo: location,
+                                     dateInfo: self.getUserDate(),
+                                     cityName: cityName)
   }
 
   private func checkLocationAuth() {
@@ -73,32 +67,24 @@ final class UserWeatherInteractor {
     }
   }
 
-  // MARK: - Date Method
-
   private func getUserDate() -> DateTime {
     let time = DateTime.getDateTime()
     return time
   }
 
-  // MARK: - WeatherData Method
-
-  private func fetchWeatherData(for location: Location, on date: DateTime) {
-    self.fetchWeatherUseCase.execute(locationInfo: location, dateInfo: date)
-      .subscribe { [weak self] forecastData in
-        self?.updateWeatherdata(with: forecastData)
-      } onFailure: { error in
-        print("Load error: \(error)")
-      }
-      .disposed(by: disposeBag)
-  }
-
-  private func updateWeatherdata(with data: [WeatherForecast]) {
+  private func updateWeatherdata(with data: [WeatherForecast], cityName: String) {
     let viewModel = UserWeatherViewModel(
       skyConditionDatas: data.filter { $0.category == .skyCondition },
       temperatureDatas: data.filter { $0.category == .temperature },
       precipitationDatas: data.filter { $0.category == .precipitation },
-      cityName: self.cityName ?? "알수 없음"
+      cityName: cityName
     )
-    userWeatherViewModelSubject.onNext(viewModel)
+    delegate?.didUpdateWeatherData(viewModel)
+  }
+}
+
+extension UserWeatherInteractor: FetchWeatherUseCaseDelegate {
+  func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String) {
+    self.updateWeatherdata(with: weatherForcasts, cityName: cityName)
   }
 }

@@ -17,7 +17,7 @@ final class LaunchScreenViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .beTimeBackgroundColor
+    view.backgroundColor = .backgroundColor
     view.addSubview(launchScreenImageView)
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

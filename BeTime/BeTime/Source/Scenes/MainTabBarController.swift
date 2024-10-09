@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-  var userWeatherSceneDIContainer: UserWeatherSceneDIContainer!
+  private let userWeatherFactory = AppDIContainer.shared.getUserWeatherViewFactory()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,8 +16,7 @@ final class MainTabBarController: UITabBarController {
   }
 
   private func setTabBar() {
-    userWeatherSceneDIContainer = UserWeatherSceneDIContainer()
-    let userWeatherViewController = userWeatherSceneDIContainer.resolveUserWeatherViewController()
+    let userWeatherViewController = userWeatherFactory.create()
     let cityListViewController = CityListViewController()
 
     userWeatherViewController.tabBarItem = UITabBarItem(
@@ -38,7 +37,7 @@ final class MainTabBarController: UITabBarController {
     ]
 
     let appearance = UITabBarAppearance().then {
-      $0.backgroundColor = .beTimeBackgroundColor
+      $0.backgroundColor = .backgroundColor
     }
     
     tabBar.standardAppearance = appearance
