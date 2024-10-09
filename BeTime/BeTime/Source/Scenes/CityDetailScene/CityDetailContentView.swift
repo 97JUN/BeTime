@@ -298,6 +298,7 @@ final class CityDetailContentView: UIView {
 extension CityDetailContentView: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return (viewModel?.skyConditionDatas?.count ?? 0) - 1
+    //viewModel의 첫번쨰 데이터는 TableView의 상단에서 표시하기 때문에 tableView 갯수 -1 개 하도록.
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -305,8 +306,14 @@ extension CityDetailContentView: UITableViewDataSource, UITableViewDelegate {
     guard let viewModel = self.viewModel else { return cell }
     let newIndex = indexPath.row + 1
 
-    let skyCondition = viewModel.skyConditionDatas?[newIndex]
+    guard let skyConditionDatas = viewModel.skyConditionDatas, skyConditionDatas.indices.contains(newIndex),
+          let temperatureDatas = viewModel.temperatureDatas, temperatureDatas.indices.contains(newIndex),
+          let precipitationDatas = viewModel.precipitationDatas, precipitationDatas.indices.contains(newIndex)
+    else {
+      return cell
+    }
 
+    let skyCondition = viewModel.skyConditionDatas?[newIndex]
     let image = self.updateSkyImage(value: skyCondition?.value)
     let time = skyCondition?.time
     let temperature = viewModel.temperatureDatas?[newIndex].value
