@@ -5,9 +5,10 @@
 //  Created by 쭌이 on 9/13/24.
 //
 
+import UIKit
+
 import PinLayout
 import Then
-import UIKit
 
 final class LaunchScreenViewController: UIViewController {
   private let launchScreenImageView = UIImageView().then {

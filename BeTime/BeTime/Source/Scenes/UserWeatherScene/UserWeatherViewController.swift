@@ -6,13 +6,9 @@
 //
 import UIKit
 
-import PinLayout
-import RxSwift
-
 final class UserWeatherViewController: UIViewController {
   private let contentView = UserWeatherContentView()
   var interactor: UserWeatherInteractor
-  private let disposeBag = DisposeBag()
 
   init(interactor: UserWeatherInteractor) {
     self.interactor = interactor
