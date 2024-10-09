@@ -78,6 +78,7 @@
 		29CC0D0C2CB2DFBB00FD0784 /* CityDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailInteractor.swift; sourceTree = "<group>"; };
 		29CC0D162CB3B11300FD0784 /* CityDetailViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailViewFactory.swift; sourceTree = "<group>"; };
 		29CC0D292CB504CE00FD0784 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		29D2478F2CB6DE3100557990 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		29EEFAD02C7892BC00BEBE78 /* WeatherResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponseDTO.swift; sourceTree = "<group>"; };
 		29EEFAD22C78A29400BEBE78 /* LocationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCore.swift; sourceTree = "<group>"; };
 		29EEFAD72C78A3E200BEBE78 /* WeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
@@ -194,6 +195,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		29D2478E2CB6DE1700557990 /* Persistent */ = {
+			isa = PBXGroup;
+			children = (
+				29D2478F2CB6DE3100557990 /* UserLocationManager.swift */,
+			);
+			path = Persistent;
+			sourceTree = "<group>";
+		};
 		29D870F82C92050E00C359E2 /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +231,7 @@
 				29EEFACD2C788FEB00BEBE78 /* Data */,
 				29EEFAC92C788E8900BEBE78 /* Domain */,
 				29CC0D282CB504AB00FD0784 /* Utilities */,
+				29D2478E2CB6DE1700557990 /* Persistent */,
 				29EEFACA2C788E9700BEBE78 /* Scenes */,
 			);
 			path = Source;
@@ -488,6 +498,7 @@
 				29EEFAE02C7C452000BEBE78 /* APIConfig.swift in Sources */,
 				29EEFADE2C79EEF000BEBE78 /* DateCore.swift in Sources */,
 				29EEFAD32C78A29400BEBE78 /* LocationCore.swift in Sources */,
+				29D247902CB6DE3100557990 /* UserLocationManager.swift in Sources */,
 				29CC0D2A2CB504CE00FD0784 /* AlertModel.swift in Sources */,
 				29EEFADC2C78AB9500BEBE78 /* WeatherRequestDTO.swift in Sources */,
 				29EEFAD12C7892BC00BEBE78 /* WeatherResponseDTO.swift in Sources */,
