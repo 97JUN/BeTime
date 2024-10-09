@@ -28,10 +28,16 @@ struct CityList {
   }
 
   func cityName(at index: Int) -> String {
+    guard cityLocations.count > index else { return "" }
     return cityLocations[index].cityName
   }
 
   func getCity(at index: Int) -> UserLocation {
+    guard cityLocations.count > index else { return UserLocation(
+      cityName: "",
+      latitude: 0.00,
+      longitude: 0.00)
+    }
     return cityLocations[index]
   }
 

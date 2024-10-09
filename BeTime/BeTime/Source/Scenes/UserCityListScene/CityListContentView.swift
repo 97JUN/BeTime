@@ -227,15 +227,21 @@ extension CityListContentView: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: .default, reuseIdentifier: "CityListTableViewCell")
-    cell.textLabel?.text = self.viewModel?.savedCities?[indexPath.row].cityName ?? "도시 없음"
+    if let savedCities = self.viewModel?.savedCities, indexPath.row < savedCities.count {
+      cell.textLabel?.text = self.viewModel?.savedCities?[indexPath.row].cityName
+    } else {
+      cell.textLabel?.text = "도시 없음"
+    }
     cell.backgroundColor = .clear
     return cell
   }
 
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
+      if let savedCities = viewModel?.savedCities, savedCities.indices.contains(indexPath.row) {
       viewModel?.savedCities?.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
     }
     self.updateEmptyLabel(viewModel: viewModel ?? CityListViewModel())
   }
