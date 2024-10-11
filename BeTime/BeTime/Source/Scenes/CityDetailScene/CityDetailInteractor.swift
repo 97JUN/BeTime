@@ -52,7 +52,18 @@ final class CityDetailInteractor {
 }
 
 extension CityDetailInteractor: FetchWeatherUseCaseDelegate {
-  func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String) {
-    self.updateWeatherData(with: weatherForcasts, cityName: cityName)
+  func didUpdateForcastDatas(_ weatherForcasts: Result<[WeatherForecast], Error>, cityName: String) {
+    switch weatherForcasts {
+    case .success(let weatherForcasts):
+      self.updateWeatherData(with: weatherForcasts, cityName: cityName)
+
+    case .failure(let error):
+      self.updateWeatherData(with: [WeatherForecast(
+        category: .precipitation,
+        time: "",
+        value: ""
+      )], cityName: cityName)
+      print("error:\(error)")
+    }
   }
 }

@@ -15,7 +15,7 @@ protocol FetchWeatherUseCase: AnyObject {
 }
 
 protocol FetchWeatherUseCaseDelegate: AnyObject {
-  func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String)
+  func didUpdateForcastDatas(_ weatherForcasts: Result<[WeatherForecast], Error>, cityName: String)
 }
 
 final class FetchWeatherUseCaseImpl: FetchWeatherUseCase {
@@ -35,9 +35,11 @@ final class FetchWeatherUseCaseImpl: FetchWeatherUseCase {
       ny: locationInfo.ny)
     return weatherDataRepository.requestWeatherData(request: requestDTO)
       .subscribe { [weak self] forecasts in
-        self?.delegate?.didUpdateForecastDatas(forecasts, cityName: cityName)
+        self?.delegate?.didUpdateForcastDatas(.success(forecasts), cityName: cityName)
       } onFailure: { error in
         print("weatherData update Error: \(error)")
+        self.delegate?.didUpdateForcastDatas(.failure(error), cityName: cityName)
       }.disposed(by: disPoseBag)
+
   }
 }
