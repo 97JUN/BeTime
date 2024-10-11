@@ -6,3 +6,24 @@
 //
 
 import Foundation
+import UIKit
+
+protocol CityListViewFactory {
+  func create() -> UIViewController
+}
+
+struct CityListViewDependency {
+
+}
+
+final class CityListviFactoryImpl: CityListViewFactory {
+  private let cityListViewDependency: CityListViewDependency
+
+  init(cityListViewDependency: CityListViewDependency) {
+    self.cityListViewDependency = cityListViewDependency
+  }
+
+  func create() -> UIViewController {
+    return CityListViewController()
+  }
+}

@@ -28,7 +28,6 @@ final class CityDetailViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    interactor.delegate = self
   }
 }
 
