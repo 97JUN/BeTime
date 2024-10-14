@@ -4,32 +4,65 @@
 //
 //  Created by 쭌이 on 10/14/24.
 //
-
+import RxSwift
 import XCTest
 
+@testable import BeTime
+
 final class FetchWeatherUseCaseTests: XCTestCase {
+  // SUT (System Under Test)
+  func sut() -> FetchWeatherUseCaseImpl {
+    return FetchWeatherUseCaseImpl(
+      weatherRepository: WeatherDataRepositoryMock())
+  }
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+  func test_delegateMock객체에_데이터가_잘전달됐는지_확인() {
+    // Given
+
+    let expectedForecasts = [
+      WeatherForecast(category: .temperature, time: "1200", value: "20"),
+      WeatherForecast(category: .skyCondition, time: "1200", value: "Clear"),
+      WeatherForecast(category: .precipitation, time: "1200", value: "0")
+    ]
+
+    let useCase = sut()
+    let delegateMock = FetchWeatherUseCaseDelegateMock()
+    useCase.delegate = delegateMock
+
+    let locationInfo = Location(nx: "11", ny: "12")
+    let dateInfo = DateTime(date: "20241012", time: "1200")
+    let cityName = "Seoul"
+
+    // When
+    useCase.execute(locationInfo: locationInfo, dateInfo: dateInfo, cityName: cityName)
+
+    // Then
+    XCTAssertNotNil(delegateMock.result)
+    switch delegateMock.result {
+    case .success(let forecasts):
+      XCTAssertEqual(forecasts, expectedForecasts)
+    default:
+      XCTFail("Expected a success result.")
     }
+  }
+}
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+final class WeatherDataRepositoryMock: WeatherDataRepositoryProtocol {
+  var requestWeatherDataStub: Single<[WeatherForecast]> = .just([
+    WeatherForecast(category: .temperature, time: "1200", value: "20"),
+    WeatherForecast(category: .skyCondition, time: "1200", value: "Clear"),
+    WeatherForecast(category: .precipitation, time: "1200", value: "0")
+  ])
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+  func requestWeatherData(request: WeatherRequestDTO) -> Single<[WeatherForecast]> {
+    return requestWeatherDataStub
+  }
+}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+final class FetchWeatherUseCaseDelegateMock: FetchWeatherUseCaseDelegate {
+  var result: Result<[WeatherForecast], Error>?
 
+  func didUpdateForcastDatas(_ weatherForcasts: Result<[WeatherForecast], Error>, cityName: String) {
+    result = weatherForcasts
+  }
 }
