@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol UserWeatherInteractorDelegate: AnyObject {
   func didUpdateWeatherData(_ viewModel: UserWeatherViewModel)
+  func deniedLocationAuth()
 }
 
 final class UserWeatherInteractor {
@@ -22,7 +24,12 @@ final class UserWeatherInteractor {
 
   func viewDidLoad() {
     self.checkLocationAuth()
+    self.setDelegate()
+  }
+
+  private func setDelegate() {
     fetchWeatherUseCase.delegate = self
+    LocationCore.shared.delegate = self
   }
 
   private func fetchUserLocation() {
@@ -51,13 +58,11 @@ final class UserWeatherInteractor {
 
     switch status {
     case .notDetermined:
-      // 사용자에게 권한 요청을 보낸다
       LocationCore.shared.requestLocationAuthorization()
     case .restricted, .denied:
-      // 시스템 설정에서 설정값을 요청하도록 UIAlertController생성
+      delegate?.deniedLocationAuth()
       break
     case .authorizedAlways:
-      // 날씨 데이터 요청 하도록
       self.fetchUserLocation()
     case .authorizedWhenInUse:
       self.fetchUserLocation()
@@ -86,5 +91,20 @@ final class UserWeatherInteractor {
 extension UserWeatherInteractor: FetchWeatherUseCaseDelegate {
   func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String) {
     self.updateWeatherdata(with: weatherForcasts, cityName: cityName)
+  }
+}
+
+extension UserWeatherInteractor: LocationAuthorizationDelegate {
+  func authorizationDidChange(status: CLAuthorizationStatus) {
+    switch status {
+    case .authorizedWhenInUse, .authorizedAlways:
+      self.fetchUserLocation()
+    case .denied, .restricted:
+      delegate?.deniedLocationAuth()
+    case .notDetermined:
+      break
+    @unknown default:
+      break
+    }
   }
 }
