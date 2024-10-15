@@ -16,8 +16,9 @@ final class CityListViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    contentView.configure(viewModel: CityListViewModel(savedCities: []))
     contentView.delegate = self
+    let savedCities = UserLocationManager.shared.loadUserLocations()
+    contentView.configure(viewModel: CityListViewModel(savedCities: savedCities))
   }
 }
 

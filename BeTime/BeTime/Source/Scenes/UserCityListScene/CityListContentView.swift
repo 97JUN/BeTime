@@ -213,6 +213,12 @@ final class CityListContentView: UIView {
 
     if !(viewModel?.savedCities?.contains(where: { $0.cityName == selectedCity.cityName }) ?? false) {
       viewModel?.savedCities?.append(selectedCity)
+      let userLocation = UserLocation(
+          cityName: selectedCity.cityName,
+          latitude: selectedCity.latitude,
+          longitude: selectedCity.longitude
+        )
+      UserLocationManager.shared.saveUserLocation(userLocation)
     }
     self.configure(viewModel: viewModel ?? CityListViewModel())
     self.updateEmptyLabel(viewModel: viewModel ?? CityListViewModel())
@@ -239,9 +245,11 @@ extension CityListContentView: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       if let savedCities = viewModel?.savedCities, savedCities.indices.contains(indexPath.row) {
-      viewModel?.savedCities?.remove(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: .automatic)
-    }
+        let cityNameToDelete = viewModel?.savedCities?[indexPath.row].cityName ?? ""
+        UserLocationManager.shared.deleteCity(cityNameToDelete)
+        viewModel?.savedCities?.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
     }
     self.updateEmptyLabel(viewModel: viewModel ?? CityListViewModel())
   }
