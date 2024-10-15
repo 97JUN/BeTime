@@ -1,8 +1,8 @@
 //
-//  UserWeatherContentView.swift
+//  CityDetailContentView.swift
 //  BeTime
 //
-//  Created by 쭌이 on 9/27/24.
+//  Created by 쭌이 on 10/6/24.
 //
 
 import Foundation
@@ -10,13 +10,12 @@ import UIKit
 
 import PinLayout
 
-struct UserWeatherViewModel {
+struct CityDetailViewModel {
   let skyConditionDatas: [WeatherForecast]?
   let temperatureDatas: [WeatherForecast]?
   let precipitationDatas: [WeatherForecast]?
   let cityName: String?
 
-  let userLocationTitle: String = "나의 위치"
   let currentTemperatureTitle: String = "현재 기온"
   let currentPrecipitationTitle: String = "현재 강수량"
   let titles: [String] = [
@@ -27,13 +26,8 @@ struct UserWeatherViewModel {
   ]
 }
 
-final class UserWeatherContentView: UIView {
-  private var viewModel: UserWeatherViewModel?
-
-  private let userLocationTitle = UILabel().then {
-    $0.font = UIFont.title
-    $0.textAlignment = .center
-  }
+final class CityDetailContentView: UIView {
+  private var viewModel: CityDetailViewModel?
 
   private let userCityLabel = UILabel().then {
     $0.font = UIFont.subtitle
@@ -86,7 +80,7 @@ final class UserWeatherContentView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.configure(viewModel: viewModel ??
-      UserWeatherViewModel(
+      CityDetailViewModel(
         skyConditionDatas: [],
         temperatureDatas: [],
         precipitationDatas: [],
@@ -120,7 +114,6 @@ final class UserWeatherContentView: UIView {
 
   private func setupSubviews() {
     [
-      userLocationTitle,
       userCityLabel,
       userWeatherImage,
       currentTemperatureTitle,
@@ -143,14 +136,9 @@ final class UserWeatherContentView: UIView {
   }
 
   private func setupConstraints() {
-    userLocationTitle.pin
-      .hCenter()
-      .top(80)
-      .width(100)
-      .height(30)
 
     userCityLabel.pin
-      .below(of: userLocationTitle)
+      .top(80)
       .hCenter()
       .marginTop(15)
       .width(100)
@@ -231,9 +219,8 @@ final class UserWeatherContentView: UIView {
     }
   }
 
-  func configure(viewModel: UserWeatherViewModel) {
+  func configure(viewModel: CityDetailViewModel) {
     self.viewModel = viewModel
-    self.setUserLocationTitle(with: viewModel.userLocationTitle)
     self.setTemperatureTitle(with: viewModel.currentTemperatureTitle)
     self.setPrecipitationTitle(with: viewModel.currentPrecipitationTitle)
     self.setupTitleLabels(with: viewModel.titles)
@@ -256,10 +243,6 @@ final class UserWeatherContentView: UIView {
       self.setSkyImage(with: self.updateSkyImage(value: nil))
     }
     self.tableView.reloadData()
-  }
-
-  private func setUserLocationTitle(with title: String) {
-    self.userLocationTitle.text = title
   }
 
   private func setTemperatureTitle(with title: String) {
@@ -312,7 +295,7 @@ final class UserWeatherContentView: UIView {
   }
 }
 
-extension UserWeatherContentView: UITableViewDataSource, UITableViewDelegate {
+extension CityDetailContentView: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return (viewModel?.skyConditionDatas?.count ?? 0) - 1
   }
@@ -343,3 +326,4 @@ extension UserWeatherContentView: UITableViewDataSource, UITableViewDelegate {
     return 70
   }
 }
+
