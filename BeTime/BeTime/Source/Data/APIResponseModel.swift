@@ -24,9 +24,12 @@ struct Header: Decodable {
 
 struct Body<ItemType: Decodable>: Decodable {
   let dataType: String
-  let items: [ItemType]
+  let items: Item<ItemType>
   let pageNo: Int
   let numOfRows: Int
   let totalCount: Int
 }
 
+struct Item<ItemType: Decodable>: Decodable {
+  let item: [ItemType]
+}
