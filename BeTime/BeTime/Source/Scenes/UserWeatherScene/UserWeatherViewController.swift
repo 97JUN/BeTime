@@ -8,7 +8,7 @@ import UIKit
 
 final class UserWeatherViewController: UIViewController {
   private let contentView = UserWeatherContentView()
-  var interactor: UserWeatherInteractor
+  private let interactor: UserWeatherInteractor
 
   init(interactor: UserWeatherInteractor) {
     self.interactor = interactor

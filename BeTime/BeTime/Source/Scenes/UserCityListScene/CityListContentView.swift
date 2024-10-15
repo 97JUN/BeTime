@@ -18,9 +18,14 @@ struct CityListViewModel {
   let addButtonImage: UIImage = UIImage(systemName: "plus") ?? UIImage()
 }
 
+protocol CityListContentViewDelegate: AnyObject {
+  func didSelectCity(city: UserLocation)
+}
+
 final class CityListContentView: UIView {
   private var viewModel: CityListViewModel?
   private var cityList: CityList
+  weak var delegate: CityListContentViewDelegate?
 
   private let cityListTitleLabel = UILabel().then {
     $0.font = UIFont.title
@@ -134,7 +139,7 @@ final class CityListContentView: UIView {
       .height(30)
 
     addCityButton.pin
-      .top(50)
+      .top(100)
       .right(20)
       .size(40)
 
@@ -239,6 +244,12 @@ extension CityListContentView: UITableViewDelegate, UITableViewDataSource {
     }
     }
     self.updateEmptyLabel(viewModel: viewModel ?? CityListViewModel())
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let selectedCity = viewModel?.savedCities?[indexPath.row] else { return }
+    delegate?.didSelectCity(city: selectedCity)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -18,6 +18,7 @@ final class MainTabBarController: UITabBarController {
   private func setTabBar() {
     let userWeatherViewController = userWeatherFactory.create()
     let cityListViewController = CityListViewController()
+    let cityListNavigationController = UINavigationController(rootViewController: cityListViewController)
 
     userWeatherViewController.tabBarItem = UITabBarItem(
       title: "MyWeather",
@@ -25,7 +26,7 @@ final class MainTabBarController: UITabBarController {
       selectedImage: UIImage(systemName: "person.fill")
     )
 
-    cityListViewController.tabBarItem = UITabBarItem(
+    cityListNavigationController.tabBarItem = UITabBarItem(
       title: "CityList",
       image: UIImage(systemName: "list.bullet"),
       selectedImage: UIImage(systemName: "list.bullet")
@@ -33,7 +34,7 @@ final class MainTabBarController: UITabBarController {
 
     self.viewControllers = [
       userWeatherViewController,
-      cityListViewController,
+      cityListNavigationController,
     ]
 
     let appearance = UITabBarAppearance().then {
