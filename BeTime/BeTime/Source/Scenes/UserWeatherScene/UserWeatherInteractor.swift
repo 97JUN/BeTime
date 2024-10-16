@@ -8,6 +8,8 @@
 import Foundation
 import CoreLocation
 
+import RxSwift
+
 protocol UserWeatherInteractorDelegate: AnyObject {
   func didUpdateWeatherData(_ viewModel: UserWeatherViewModel)
   func deniedLocationAuth()
@@ -15,6 +17,7 @@ protocol UserWeatherInteractorDelegate: AnyObject {
 
 final class UserWeatherInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
+  private let disposBag = DisposeBag()
 
   weak var delegate: UserWeatherInteractorDelegate?
 
@@ -28,7 +31,6 @@ final class UserWeatherInteractor {
   }
 
   private func setDelegate() {
-    fetchWeatherUseCase.delegate = self
     LocationCore.shared.delegate = self
   }
 
@@ -51,6 +53,20 @@ final class UserWeatherInteractor {
     self.fetchWeatherUseCase.execute(locationInfo: location,
                                      dateInfo: self.getUserDate(),
                                      cityName: cityName)
+      .subscribe { [weak self] weatherForcasts in
+        self?.updateWeatherdata(with: weatherForcasts, cityName: cityName)
+      } onFailure: { error in
+        self.updateWeatherdata(
+          with: [
+            WeatherForecast(
+              category: .temperature,
+              time: "",
+              value: ""
+            )
+          ],
+          cityName: cityName
+        )
+      }.disposed(by: disposBag)
   }
 
   private func checkLocationAuth() {
@@ -85,23 +101,6 @@ final class UserWeatherInteractor {
       cityName: cityName
     )
     delegate?.didUpdateWeatherData(viewModel)
-  }
-}
-
-extension UserWeatherInteractor: FetchWeatherUseCaseDelegate {
-  func didUpdateForcastDatas(_ weatherForcasts: Result<[WeatherForecast], Error>, cityName: String) {
-    switch weatherForcasts {
-    case .success(let weatherForcasts):
-      self.updateWeatherdata(with: weatherForcasts, cityName: cityName)
-
-    case .failure(let error):
-      self.updateWeatherdata(with: [WeatherForecast(
-        category: .precipitation,
-        time: "",
-        value: ""
-      )], cityName: cityName)
-      print("Error \(error)")
-    }
   }
 }
 

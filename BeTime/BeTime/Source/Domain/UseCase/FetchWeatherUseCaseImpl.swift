@@ -10,36 +10,35 @@ import Foundation
 import RxSwift
 
 protocol FetchWeatherUseCase: AnyObject {
-  var delegate: FetchWeatherUseCaseDelegate? { get set }
-  func execute(locationInfo: Location, dateInfo: DateTime, cityName: String)
-}
-
-protocol FetchWeatherUseCaseDelegate: AnyObject {
-  func didUpdateForcastDatas(_ weatherForcasts: Result<[WeatherForecast], Error>, cityName: String)
+  func execute(locationInfo: Location, dateInfo: DateTime, cityName: String) -> Single<[WeatherForecast]>
 }
 
 final class FetchWeatherUseCaseImpl: FetchWeatherUseCase {
   private let weatherDataRepository: WeatherDataRepositoryProtocol
-  weak var delegate: FetchWeatherUseCaseDelegate?
   private let disPoseBag = DisposeBag()
 
   init(weatherRepository: WeatherDataRepositoryProtocol) {
     self.weatherDataRepository = weatherRepository
   }
 
-  func execute(locationInfo: Location, dateInfo: DateTime, cityName: String) {
+  func execute(locationInfo: Location, dateInfo: DateTime, cityName: String) -> Single<[WeatherForecast]> {
     let requestDTO = WeatherRequestDTO(
       baseDate: dateInfo.date,
       baseTime: dateInfo.time,
       nx: locationInfo.nx,
       ny: locationInfo.ny)
-    return weatherDataRepository.requestWeatherData(request: requestDTO)
-      .subscribe { [weak self] forecasts in
-        self?.delegate?.didUpdateForcastDatas(.success(forecasts), cityName: cityName)
-      } onFailure: { error in
-        print("weatherData update Error: \(error)")
-        self.delegate?.didUpdateForcastDatas(.failure(error), cityName: cityName)
-      }.disposed(by: disPoseBag)
+
+    return Single<[WeatherForecast]>.create { [weak self] single in
+      self?.weatherDataRepository.requestWeatherData(request: requestDTO)
+        .subscribe(onSuccess: { forecasts in
+          single(.success(forecasts))
+        }, onFailure: { error in
+          single(.failure(error))
+        })
+        .disposed(by: self?.disPoseBag ?? DisposeBag())
+
+      return Disposables.create()
+    }
 
   }
 }
