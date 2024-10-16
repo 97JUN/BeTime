@@ -218,7 +218,7 @@ final class CityListContentView: UIView {
           latitude: selectedCity.latitude,
           longitude: selectedCity.longitude
         )
-      UserLocationManager.shared.saveUserLocation(userLocation)
+      UserLocationDataSource.shared.saveUserLocation(userLocation)
     }
     self.configure(viewModel: viewModel ?? CityListViewModel())
     self.updateEmptyLabel(viewModel: viewModel ?? CityListViewModel())
@@ -246,7 +246,7 @@ extension CityListContentView: UITableViewDelegate, UITableViewDataSource {
     if editingStyle == .delete {
       if let savedCities = viewModel?.savedCities, savedCities.indices.contains(indexPath.row) {
         let cityNameToDelete = viewModel?.savedCities?[indexPath.row].cityName ?? ""
-        UserLocationManager.shared.deleteCity(cityNameToDelete)
+        UserLocationDataSource.shared.deleteCity(cityNameToDelete)
         viewModel?.savedCities?.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
       }
