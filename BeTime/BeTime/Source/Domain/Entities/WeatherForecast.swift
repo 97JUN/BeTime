@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherForecast {
+struct WeatherForecast: Equatable {
   let category: Category
   let time: String
   let value: String
