@@ -9,6 +9,7 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
   private let userWeatherFactory = AppDIContainer.shared.getUserWeatherViewFactory()
+  private let cityListFactory = AppDIContainer.shared.getCityListViewFactory()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,7 +18,7 @@ final class MainTabBarController: UITabBarController {
 
   private func setTabBar() {
     let userWeatherViewController = userWeatherFactory.create()
-    let cityListViewController = CityListViewController()
+    let cityListViewController = cityListFactory.create()
     let cityListNavigationController = UINavigationController(rootViewController: cityListViewController)
 
     userWeatherViewController.tabBarItem = UITabBarItem(
