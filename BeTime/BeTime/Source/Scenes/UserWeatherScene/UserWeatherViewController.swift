@@ -23,6 +23,10 @@ final class UserWeatherViewController: UIViewController {
     self.view = contentView
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    interactor.viewDidLoad()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     interactor.viewDidLoad()
