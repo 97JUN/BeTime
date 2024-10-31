@@ -12,15 +12,13 @@ import RxSwift
 @testable import BeTime
 
 final class FetchWeatherUseCaseTests: XCTestCase {
-
-  func sut(repository: WeatherDataRepositoryProtocol) -> FetchWeatherUseCaseImpl {
+  private func sut(repository: WeatherDataRepositoryProtocol) -> FetchWeatherUseCaseImpl {
     return FetchWeatherUseCaseImpl(
-      weatherRepository: repository
+      weatherRepository: repository // WeatherDataRepositoryMock()
     )
   }
 
-  func test_Repository의_requestWeatherData가_올바르게_호출됐는지_확인하는_테스트() {
-
+  func test_실행_시_Repository의_requestWeatherData에_전달된_requestDTO를_확인_후_호출_성공_시_날씨데이터를_반환합니다() {
     // Given
     let repositoryMock = WeatherDataRepositoryMock()
     let usecase = FetchWeatherUseCaseImpl(
@@ -31,65 +29,11 @@ final class FetchWeatherUseCaseTests: XCTestCase {
     let dateInfo = DateTime(date: "20241012", time: "1200")
     let cityName = "Seoul"
 
-    // When
-    usecase.execute(
-      locationInfo: locationInfo,
-      dateInfo: dateInfo,
-      cityName: cityName
-    )
-      .subscribe()
-      .dispose()
-
-    // Then
-    XCTAssertTrue(repositoryMock.isRequestWeatherDataCalled)
-  }
-
-  func test_UseCase의_execute가_올바른_데이터를_반환하는지_테스트() {
-
-    // Given
     let expectedForecasts = [
       WeatherForecast(category: .temperature, time: "1200", value: "20"),
       WeatherForecast(category: .skyCondition, time: "1200", value: "Clear"),
       WeatherForecast(category: .precipitation, time: "1200", value: "0")
     ]
-
-    let locationInfo = Location(nx: "11", ny: "12")
-    let dateInfo = DateTime(date: "20241012", time: "1200")
-    let cityName = "Seoul"
-
-    let repositoryMock = WeatherDataRepositoryMock()
-    repositoryMock.requestWeatherDataStub = .just([])
-    let useCase = sut(repository: repositoryMock)
-
-    repositoryMock.requestWeatherDataStub = .just([
-      WeatherForecast(category: .temperature, time: "1200", value: "20"),
-      WeatherForecast(category: .skyCondition, time: "1200", value: "Clear"),
-      WeatherForecast(category: .precipitation, time: "1200", value: "0")
-    ])
-
-    // When
-    useCase.execute(
-      locationInfo: locationInfo,
-      dateInfo: dateInfo,
-      cityName: cityName
-    )
-    .subscribe { forcasts in
-      // Then
-      XCTAssertEqual(forcasts, expectedForecasts)
-    } onFailure: { error in
-      XCTFail("Expected success but received error: \(error)")
-    }.dispose()
-  }
-
-  func test_UseCase에서_생성한RequestDTO가_Repository에서_전달받은_requestDTO와_같은지_검증하는_테스트() {
-
-    // Given
-    let repositoryMcok = WeatherDataRepositoryMock()
-    let useCase = sut(repository: repositoryMcok)
-
-    let locationInfo = Location(nx: "11", ny: "12")
-    let dateInfo = DateTime(date: "20241012", time: "1200")
-    let cityName = "Seoul"
 
     let expectedRequestDTO = WeatherRequestDTO(
       baseDate: "20241012",
@@ -99,17 +43,51 @@ final class FetchWeatherUseCaseTests: XCTestCase {
     )
 
     // When
-    useCase.execute(
+    usecase.execute(
       locationInfo: locationInfo,
       dateInfo: dateInfo,
       cityName: cityName
     )
-      .subscribe()
-      .dispose()
-
-    // Then
-    XCTAssertEqual(expectedRequestDTO, repositoryMcok.receivedRequestDTO)
+    .subscribe { forcasts in
+      // Then
+      XCTAssertEqual(forcasts, expectedForecasts)
+      XCTAssertEqual(repositoryMock.receivedRequestDTO, expectedRequestDTO)
+      XCTAssertTrue(repositoryMock.isRequestWeatherDataCalled)
+    } onFailure: { error in
+      XCTFail("Expected success but received error: \(error)")
+    }.dispose()
   }
+
+  func test_실행_시_Repository의_requestWeatherData에_전달된_requestDTO_호출_실패_시_오류를_반환합니다() {
+    // Given
+    let repositoryMock = WeatherDataRepositoryMock()
+    let usecase = FetchWeatherUseCaseImpl(
+      weatherRepository: repositoryMock
+    )
+
+    let locationInfo = Location(nx: "11", ny: "12")
+    let dateInfo = DateTime(date: "20241012", time: "1200")
+    let cityName = "Seoul"
+
+    let expectedError = NSError(domain: "NetworkError", code: -1, userInfo: nil)
+    repositoryMock.requestWeatherDataStub = .error(expectedError)
+
+    // When
+    usecase.execute(
+      locationInfo: locationInfo,
+      dateInfo: dateInfo,
+      cityName: cityName
+    )
+    .subscribe { forecasts in
+      XCTFail("Expected failure but received forecasts: \(forecasts)")
+    } onFailure: { error in
+      // Then
+      let nsError = error as NSError
+      XCTAssertEqual(nsError, expectedError)
+      XCTAssertTrue(repositoryMock.isRequestWeatherDataCalled)
+    }.dispose()
+  }
+
 }
 
 final class WeatherDataRepositoryMock: WeatherDataRepositoryProtocol {
