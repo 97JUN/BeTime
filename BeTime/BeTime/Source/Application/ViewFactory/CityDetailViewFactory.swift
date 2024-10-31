@@ -15,7 +15,7 @@ protocol CityDetailViewFactory {
 }
 
 struct CityDetailViewDependency {
-  let cityDetailInteractor: CityDetailInteractor
+  let weatherDataRepository: WeatherDataRepositoryProtocol
 }
 
 final class CityDetailViewFactoryImpl: CityDetailViewFactory {
@@ -26,7 +26,17 @@ final class CityDetailViewFactoryImpl: CityDetailViewFactory {
   }
 
   func create(userLocation: UserLocation) -> UIViewController {
-    let cityDtailInteractor = cityDetailViewDependency.cityDetailInteractor
-    return CityDetailViewController(interactor: cityDtailInteractor, userLocation: userLocation)
+    let cityDetailInteractor = CityDetailInteractor(
+      fetchWeatherUseCase: FetchWeatherUseCaseImpl(
+        weatherRepository: cityDetailViewDependency.weatherDataRepository
+      )
+    )
+    let cityDetailViewController = CityDetailViewController(
+      interactor: cityDetailInteractor,
+      userLocation: userLocation
+    )
+
+    cityDetailInteractor.delegate = cityDetailViewController
+    return cityDetailViewController
   }
 }

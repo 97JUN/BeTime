@@ -15,7 +15,7 @@ protocol UserWeatherViewFactory {
 }
 
 struct UserWeatherViewDependency {
-  let userWeatherInteractor: UserWeatherInteractor
+  let weatherDataRepository: WeatherDataRepositoryProtocol
 }
 
 final class UserWeatherViewFactoryImpl: UserWeatherViewFactory {
@@ -26,8 +26,13 @@ final class UserWeatherViewFactoryImpl: UserWeatherViewFactory {
   }
 
   func create() -> UIViewController {
-    let userWeatherInteractor = userWeatherViewDependency.userWeatherInteractor
+    let userWeatherInteractor = UserWeatherInteractor(
+      searchWeatherUseCase: FetchWeatherUseCaseImpl(
+        weatherRepository: userWeatherViewDependency.weatherDataRepository
+      )
+    )
     let userWeatherViewController = UserWeatherViewController(interactor: userWeatherInteractor)
+    userWeatherInteractor.delegate = userWeatherViewController
     return userWeatherViewController
   }
 }

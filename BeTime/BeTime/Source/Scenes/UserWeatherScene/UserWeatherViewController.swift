@@ -25,7 +25,6 @@ final class UserWeatherViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    interactor.delegate = self
     interactor.viewDidLoad()
   }
 

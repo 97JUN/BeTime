@@ -8,18 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1873BCBBC9894EFA95BB7E63 /* Pods_BeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9EC6676C51C13C802702E8 /* Pods_BeTime.framework */; };
-		290B3ECA2CBF7FF400920E27 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870D82C91F18E00C359E2 /* FlexLayout */; };
-		290B3ECB2CBF7FF400920E27 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870DB2C91F1A300C359E2 /* Then */; };
-		290B3ECC2CBF7FF400920E27 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870DE2C91F1B000C359E2 /* RxBlocking */; };
-		290B3ECD2CBF7FF400920E27 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E02C91F1B000C359E2 /* RxBlocking-Dynamic */; };
-		290B3ECE2CBF7FF400920E27 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E22C91F1B000C359E2 /* RxCocoa */; };
-		290B3ECF2CBF7FF400920E27 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E42C91F1B000C359E2 /* RxCocoa-Dynamic */; };
-		290B3ED02CBF7FF400920E27 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E62C91F1B000C359E2 /* RxRelay */; };
-		290B3ED12CBF7FF400920E27 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870E92C91F1B900C359E2 /* Swinject */; };
-		290B3ED22CBF7FF400920E27 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870EB2C91F1B900C359E2 /* Swinject-Dynamic */; };
-		290B3ED32CBF7FF400920E27 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870EE2C91F1C100C359E2 /* Alamofire */; };
-		290B3ED42CBF7FF400920E27 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870F02C91F1C100C359E2 /* AlamofireDynamic */; };
-		290B3ED52CBF7FF400920E27 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 29D870F32C91F1C600C359E2 /* PinLayout */; };
+		290B3E7A2CBD023F00920E27 /* BeTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B3E792CBD023F00920E27 /* BeTimeTests.swift */; };
+		290B3E812CBD025600920E27 /* FetchWeatherUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B3E802CBD025600920E27 /* FetchWeatherUseCaseTests.swift */; };
 		290E269F2C92058F0091C8B3 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E269E2C92058F0091C8B3 /* AppDIContainer.swift */; };
 		290E26A22C9206220091C8B3 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E26A12C9206220091C8B3 /* CityListViewController.swift */; };
 		290E26A42C92066C0091C8B3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E26A32C92066C0091C8B3 /* MainTabBarController.swift */; };
@@ -57,7 +47,20 @@
 		29EEFB242C872B4800BEBE78 /* LocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EEFB232C872B4800BEBE78 /* LocationMapper.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		290B3E7B2CBD023F00920E27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29894DDF2C75D150002A08DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29894DE62C75D150002A08DF;
+			remoteInfo = BeTime;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		290B3E772CBD023F00920E27 /* BeTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		290B3E792CBD023F00920E27 /* BeTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTimeTests.swift; sourceTree = "<group>"; };
+		290B3E802CBD025600920E27 /* FetchWeatherUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchWeatherUseCaseTests.swift; sourceTree = "<group>"; };
 		290E269E2C92058F0091C8B3 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		290E26A12C9206220091C8B3 /* CityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
 		290E26A32C92066C0091C8B3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -101,22 +104,29 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		290B3E742CBD023F00920E27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29894DE42C75D150002A08DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				290B3ED52CBF7FF400920E27 /* PinLayout in Frameworks */,
-				290B3ED42CBF7FF400920E27 /* AlamofireDynamic in Frameworks */,
-				290B3ED32CBF7FF400920E27 /* Alamofire in Frameworks */,
-				290B3ED22CBF7FF400920E27 /* Swinject-Dynamic in Frameworks */,
-				290B3ED12CBF7FF400920E27 /* Swinject in Frameworks */,
-				290B3ED02CBF7FF400920E27 /* RxRelay in Frameworks */,
-				290B3ECF2CBF7FF400920E27 /* RxCocoa-Dynamic in Frameworks */,
-				290B3ECE2CBF7FF400920E27 /* RxCocoa in Frameworks */,
-				290B3ECD2CBF7FF400920E27 /* RxBlocking-Dynamic in Frameworks */,
-				290B3ECC2CBF7FF400920E27 /* RxBlocking in Frameworks */,
-				290B3ECB2CBF7FF400920E27 /* Then in Frameworks */,
-				290B3ECA2CBF7FF400920E27 /* FlexLayout in Frameworks */,
+				29D247B62CB6E1CE00557990 /* PinLayout in Frameworks */,
+				29D247B52CB6E1CE00557990 /* AlamofireDynamic in Frameworks */,
+				29D247B42CB6E1CE00557990 /* Alamofire in Frameworks */,
+				29D247B32CB6E1CE00557990 /* Swinject-Dynamic in Frameworks */,
+				29D247B22CB6E1CE00557990 /* Swinject in Frameworks */,
+				29D247B12CB6E1CE00557990 /* RxRelay in Frameworks */,
+				29D247B02CB6E1CE00557990 /* RxCocoa-Dynamic in Frameworks */,
+				29D247AF2CB6E1CE00557990 /* RxCocoa in Frameworks */,
+				29D247AE2CB6E1CE00557990 /* RxBlocking-Dynamic in Frameworks */,
+				29D247AD2CB6E1CE00557990 /* RxBlocking in Frameworks */,
+				29D247AC2CB6E1CE00557990 /* Then in Frameworks */,
+				29D247AB2CB6E1CE00557990 /* FlexLayout in Frameworks */,
 				1873BCBBC9894EFA95BB7E63 /* Pods_BeTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +134,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290B3E782CBD023F00920E27 /* BeTimeTests */ = {
+			isa = PBXGroup;
+			children = (
+				290B3E792CBD023F00920E27 /* BeTimeTests.swift */,
+				290B3E802CBD025600920E27 /* FetchWeatherUseCaseTests.swift */,
+			);
+			path = BeTimeTests;
+			sourceTree = "<group>";
+		};
 		290E26A02C9206040091C8B3 /* UserCityListScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +165,7 @@
 			children = (
 				2975FF8D2CA14F48005CF6C3 /* UserWeatherViewFactory.swift */,
 				29CC0D162CB3B11300FD0784 /* CityDetailViewFactory.swift */,
+				29D247B72CB6ED5C00557990 /* CityListViewFactory.swift */,
 			);
 			path = ViewFactory;
 			sourceTree = "<group>";
@@ -154,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				29894DE92C75D150002A08DF /* BeTime */,
+				290B3E782CBD023F00920E27 /* BeTimeTests */,
 				29894DE82C75D150002A08DF /* Products */,
 				FB8F9AC4C9A97182629EA52D /* Pods */,
 				BF1F2BE479A2087E1CEB4E0E /* Frameworks */,
@@ -164,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				29894DE72C75D150002A08DF /* BeTime.app */,
+				290B3E772CBD023F00920E27 /* BeTimeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -373,6 +395,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		290B3E762CBD023F00920E27 /* BeTimeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 290B3E7F2CBD023F00920E27 /* Build configuration list for PBXNativeTarget "BeTimeTests" */;
+			buildPhases = (
+				290B3E732CBD023F00920E27 /* Sources */,
+				290B3E742CBD023F00920E27 /* Frameworks */,
+				290B3E752CBD023F00920E27 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				290B3E7C2CBD023F00920E27 /* PBXTargetDependency */,
+			);
+			name = BeTimeTests;
+			productName = BeTimeTests;
+			productReference = 290B3E772CBD023F00920E27 /* BeTimeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		29894DE62C75D150002A08DF /* BeTime */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29894DFB2C75D152002A08DF /* Build configuration list for PBXNativeTarget "BeTime" */;
@@ -412,9 +452,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					290B3E762CBD023F00920E27 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 29894DE62C75D150002A08DF;
+					};
 					29894DE62C75D150002A08DF = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -442,11 +486,19 @@
 			projectRoot = "";
 			targets = (
 				29894DE62C75D150002A08DF /* BeTime */,
+				290B3E762CBD023F00920E27 /* BeTimeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		290B3E752CBD023F00920E27 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29894DE52C75D150002A08DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,6 +535,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		290B3E732CBD023F00920E27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				290B3E7A2CBD023F00920E27 /* BeTimeTests.swift in Sources */,
+				290B3E812CBD025600920E27 /* FetchWeatherUseCaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29894DE32C75D150002A08DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -510,6 +571,7 @@
 				29EEFAE22C7CBAA800BEBE78 /* APIResponseModel.swift in Sources */,
 				29EEFB1F2C8580F200BEBE78 /* APIManager.swift in Sources */,
 				29EEFB242C872B4800BEBE78 /* LocationMapper.swift in Sources */,
+				29D247B82CB6ED5C00557990 /* CityListViewFactory.swift in Sources */,
 				29EEFAD82C78A3E200BEBE78 /* WeatherForecast.swift in Sources */,
 				290E26A42C92066C0091C8B3 /* MainTabBarController.swift in Sources */,
 				291C35972CA68F8C007EAD47 /* UserWeatherContentView.swift in Sources */,
@@ -526,7 +588,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		290B3E7C2CBD023F00920E27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29894DE62C75D150002A08DF /* BeTime */;
+			targetProxy = 290B3E7B2CBD023F00920E27 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		290B3E7D2CBD023F00920E27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 47F2K76WB8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-7Jun.BeTimeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeTime.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeTime";
+			};
+			name = Debug;
+		};
+		290B3E7E2CBD023F00920E27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 47F2K76WB8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-7Jun.BeTimeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeTime.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeTime";
+			};
+			name = Release;
+		};
 		29894DF92C75D152002A08DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -705,6 +815,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		290B3E7F2CBD023F00920E27 /* Build configuration list for PBXNativeTarget "BeTimeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				290B3E7D2CBD023F00920E27 /* Debug */,
+				290B3E7E2CBD023F00920E27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		29894DE22C75D150002A08DF /* Build configuration list for PBXProject "BeTime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

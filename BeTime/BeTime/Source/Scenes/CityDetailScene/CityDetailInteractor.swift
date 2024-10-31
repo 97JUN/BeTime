@@ -7,12 +7,15 @@
 
 import Foundation
 
+import RxSwift
+
 protocol CityDetailInteractorDelegate: AnyObject {
   func didUpdateWeatherData(_ viewModel: CityDetailViewModel)
 }
 
 final class CityDetailInteractor {
   private let fetchWeatherUseCase: FetchWeatherUseCase
+  private let disposeBag = DisposeBag()
   weak var delegate: CityDetailInteractorDelegate?
 
   init(fetchWeatherUseCase: FetchWeatherUseCase) {
@@ -20,7 +23,6 @@ final class CityDetailInteractor {
   }
 
   func viewDidLoad(userLocation: UserLocation) {
-    fetchWeatherUseCase.delegate = self
     self.convertLocationData(userLocation)
   }
 
@@ -33,6 +35,21 @@ final class CityDetailInteractor {
     self.fetchWeatherUseCase.execute(locationInfo: location,
                                      dateInfo: self.getUserDate(),
                                      cityName: cityName)
+    .subscribe { [weak self] weatherForcasts in
+      self?.updateWeatherData(with: weatherForcasts, cityName: cityName)
+    } onFailure: { error in
+      self.updateWeatherData(
+        with: [
+          WeatherForecast(
+            category: .temperature,
+            time: "",
+            value: ""
+          )
+        ],
+        cityName: cityName
+      )
+    }.disposed(by: disposeBag)
+
   }
 
   private func getUserDate() -> DateTime {
@@ -48,11 +65,5 @@ final class CityDetailInteractor {
       cityName: cityName
     )
     delegate?.didUpdateWeatherData(viewModel)
-  }
-}
-
-extension CityDetailInteractor: FetchWeatherUseCaseDelegate {
-  func didUpdateForecastDatas(_ weatherForcasts: [WeatherForecast], cityName: String) {
-    self.updateWeatherData(with: weatherForcasts, cityName: cityName)
   }
 }
