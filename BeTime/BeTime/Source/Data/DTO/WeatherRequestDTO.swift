@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherRequestDTO {
+struct WeatherRequestDTO: Equatable {
   let baseURL: String = APIConfig.baseURL
 
   // 기본값 있는 프로퍼티
